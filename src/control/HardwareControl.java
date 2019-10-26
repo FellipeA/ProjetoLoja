@@ -1,23 +1,27 @@
 package control;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import model.Hardware;
 
 public class HardwareControl {
-	private List<Hardware> lista = new ArrayList<>();
+	private ObservableList<Hardware> lista = 
+			FXCollections.observableArrayList();
 	
 	public void adicionar(Hardware h) { 
-		lista.add(h);
+		getLista().add(h);
 	}
 	
-	public Hardware pesquisarPorTipo(String tipo) { 
-		for (Hardware h : lista) { 
-			if (h.getTipo().contains(tipo)) { 
+	public Hardware pesquisarPorNome(String nome) { 
+		for (Hardware h : getLista()) { 
+			if (h.getNome().contains(nome)) { 
 				return h;
 			}
 		}
 		return null;
+	}
+
+	public ObservableList<Hardware> getLista() {
+		return lista;
 	}
 }

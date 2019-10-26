@@ -74,8 +74,8 @@ public class HardwareBoundary extends Application implements EventHandler<Action
 	public Hardware boundaryParaEntidade() { 
 		Hardware h = new Hardware();
 		try {
-			h.setTipo(txtTipo.getValue().toString());
-			h.setFabricante(txtGarantia.getValue().toString());
+			h.setTipo(txtTipo.getValue());
+			h.setGarantia(txtGarantia.getValue());
 //			h.setDescricao(txtDescricao.getText());
 			h.setPreco(Double.parseDouble(txtPreco.getText()));
 		} catch (Exception e) {
@@ -102,8 +102,8 @@ public class HardwareBoundary extends Application implements EventHandler<Action
 		if (event.getTarget() == btnAdicionar) { 
 //			control.adicionar(null);
 		} else if (event.getTarget() == btnPesquisar) {
-			String tipo = txtNome.getText();
-			Hardware h = control.pesquisarPorTipo(tipo);			
+			String nome = txtNome.getText();
+			Hardware h = control.pesquisarPorNome(nome);			
 //			entidadeParaBoundary(h);
 		}
 	}

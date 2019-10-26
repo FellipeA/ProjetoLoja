@@ -1,14 +1,14 @@
 package model;
 
-import java.util.Date;
+import ENUM.TipoGarantia;
+import ENUM.TipoHardware;
 
 public class Hardware {
 	private long id;
-	private String tipo;
-	private String fabricante;
+	private TipoGarantia garantia;
+	private TipoHardware tipo;
 	private double preco;
-	private Date dataCompra;
-	private String descricao;
+	private String nome;
 	
 	public long getId() {
 		return id;
@@ -17,18 +17,18 @@ public class Hardware {
 		this.id = id;
 	}
 	
-	public String getTipo() {
-		return tipo;
+	public TipoGarantia getGarantia() {
+		return garantia;
 	}
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
+	public void setGarantia(TipoGarantia garantia) {
+		this.garantia = garantia;
 	}
 	
-	public String getFabricante() {
-		return fabricante;
+	public TipoHardware getTipo() {
+		return tipo;
 	}
-	public void setFabricante(String fabricante) {
-		this.fabricante = fabricante;
+	public void setTipo(TipoHardware tipo) {
+		this.tipo = tipo;
 	}
 	
 	public double getPreco() {
@@ -38,17 +38,10 @@ public class Hardware {
 		this.preco = preco;
 	}
 	
-	public Date getDataCompra() {
-		return dataCompra;
+	public String getNome() {
+		return nome;
 	}
-	public void setDataCompra(Date dataCompra) {
-		this.dataCompra = dataCompra;
-	}
-	
-	public String getDescricao() {
-		return descricao;
-	}
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 }
