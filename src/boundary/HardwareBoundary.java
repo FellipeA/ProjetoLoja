@@ -27,7 +27,7 @@ public class HardwareBoundary extends Application implements EventHandler<Action
 	private ComboBox<TipoHardware> txtTipo = new ComboBox<TipoHardware>();
 	private TextField txtPreco = new TextField();
 	private ComboBox<TipoGarantia> txtGarantia = new ComboBox<TipoGarantia>();
-	private Button btnAdicionar = new Button("Adicionar");
+	private Button btnAdicionar = new Button("Salvar");
 	private Button btnPesquisar = new Button("Pesquisar");
 	private Button btnLimpar = new Button("Limpar");
 	
