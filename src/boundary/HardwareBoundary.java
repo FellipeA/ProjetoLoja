@@ -1,5 +1,6 @@
 package boundary;
 
+
 import javax.swing.JOptionPane;
 
 import ENUM.TipoGarantia;
@@ -14,6 +15,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.ColumnConstraints;
@@ -30,6 +32,9 @@ public class HardwareBoundary extends Application implements EventHandler<Action
 	private Button btnAdicionar = new Button("Salvar");
 	private Button btnPesquisar = new Button("Pesquisar");
 	private Button btnLimpar = new Button("Limpar");
+	private Tooltip dicaSalvar = new Tooltip("Salvar Novo Hardware");
+	private Tooltip dicaPesquisar = new Tooltip("Pesquisar Hardware pelo Nome");
+	private Tooltip dicaLimpar = new Tooltip("Limpar Todos os Campos");
 	
 	@Override
 	public void start(Stage primaryStage) throws Exception{
@@ -61,6 +66,9 @@ public class HardwareBoundary extends Application implements EventHandler<Action
 		txtGarantia.getItems().setAll(TipoGarantia.values());
 		painelCampos.add(txtGarantia, 1, 3);
 
+		btnAdicionar.setTooltip(dicaSalvar);
+		btnPesquisar.setTooltip(dicaPesquisar);
+		btnLimpar.setTooltip(dicaLimpar);
 		painelBotoes.getChildren().addAll(btnAdicionar, btnPesquisar,btnLimpar);
 		
 		btnAdicionar.addEventHandler(ActionEvent.ANY, this);
