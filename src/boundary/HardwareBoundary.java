@@ -1,0 +1,120 @@
+package boundary;
+
+import ENUM.TipoGarantia;
+import ENUM.TipoHardware;
+import control.HardwareControl;
+import model.Hardware;
+import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.ColumnConstraints;
+import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
+
+public class HardwareBoundary extends Application implements EventHandler<ActionEvent> {
+	private HardwareControl control = new HardwareControl();
+	private TextField txtNome = new TextField();
+	private ComboBox<TipoHardware> txtTipo = new ComboBox<TipoHardware>();
+	private TextField txtPreco = new TextField();
+	private ComboBox<TipoGarantia> txtGarantia = new ComboBox<TipoGarantia>();
+	private Button btnAdicionar = new Button("Adicionar");
+	private Button btnPesquisar = new Button("Pesquisar");
+	
+	@Override
+	public void start(Stage primaryStage) throws Exception{
+		BorderPane painelPrincipal = new BorderPane();
+		painelPrincipal.setStyle("-fx-padding: 20px");
+		painelPrincipal.setPrefSize(500, 500);
+		FlowPane painelBotoes = new FlowPane();
+		GridPane painelCampos = new GridPane();
+		ColumnConstraints col0 = new ColumnConstraints();
+		col0.setPercentWidth(30);
+		ColumnConstraints col1 = new ColumnConstraints();
+		col1.setPercentWidth(70);
+		painelCampos.getColumnConstraints().addAll(col0, col1);
+		
+		painelPrincipal.setCenter(painelCampos);
+		painelPrincipal.setBottom(painelBotoes);
+		
+		painelCampos.setVgap(5);
+		painelCampos.setHgap(10);
+		
+		painelCampos.add(new Label("Nome"), 0, 0);
+		painelCampos.add(txtNome, 1, 0);
+		painelCampos.add(new Label("Tipo"), 0, 1);
+		txtTipo.getItems().setAll(TipoHardware.values());
+		painelCampos.add(txtTipo, 1, 1);
+		painelCampos.add(new Label("Preço"), 0, 2);
+		painelCampos.add(txtPreco, 1, 2);
+		painelCampos.add(new Label("Garantia"), 0, 3);
+		txtGarantia.getItems().setAll(TipoGarantia.values());
+		painelCampos.add(txtGarantia, 1, 3);
+
+		painelBotoes.getChildren().addAll(btnAdicionar, btnPesquisar);
+		
+		btnAdicionar.addEventHandler(ActionEvent.ANY, this);
+//		btnPesquisar.addEventHandler(ActionEvent.ANY, this);
+		painelBotoes.setHgap(15);
+		Scene scn = new Scene(painelPrincipal, 300, 190);
+		
+		primaryStage.setScene(scn);
+		primaryStage.getIcons().add(new Image(HardwareBoundary.class.getResourceAsStream("icon.png")));
+		primaryStage.setTitle("Manter Produto");
+		primaryStage.show();
+	}
+	
+	public Hardware boundaryParaEntidade() { 
+		Hardware h = new Hardware();
+		try {
+			h.setTipo(txtTipo.getValue().toString());
+			h.setFabricante(txtGarantia.getValue().toString());
+//			h.setDescricao(txtDescricao.getText());
+			h.setPreco(Double.parseDouble(txtPreco.getText()));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return h;
+	}
+//	
+//	public void entidadeParaBoundary(Hardware h) { 
+//		if (h != null) { 
+//			txtTipo.setText(h.getTipo());
+//			txtFabricante.setText(h.getFabricante());
+//			txtDescricao.setText(h.getDescricao());
+//			txtId.setText(String.valueOf(h.getId()));
+//			txtPreco.setText(String.valueOf(h.getPreco()));
+//			Limpatxt();
+//		} else {
+//			JOptionPane.showMessageDialog(null, "HARDWARE NAO ENCONTRADO!");
+//		}
+//	}
+//	
+//	@Override
+	public void handle(ActionEvent event) {
+		if (event.getTarget() == btnAdicionar) { 
+//			control.adicionar(null);
+		} else if (event.getTarget() == btnPesquisar) {
+			String tipo = txtNome.getText();
+			Hardware h = control.pesquisarPorTipo(tipo);			
+//			entidadeParaBoundary(h);
+		}
+	}
+	
+
+	public static void main(String[] args) {
+		HardwareBoundary.launch(args);
+	}	
+	
+	public void Limpatxt() {
+		txtNome.clear();
+		txtPreco.clear();
+	}
+}
