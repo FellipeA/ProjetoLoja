@@ -29,6 +29,7 @@ public class HardwareBoundary extends Application implements EventHandler<Action
 	private ComboBox<TipoGarantia> txtGarantia = new ComboBox<TipoGarantia>();
 	private Button btnAdicionar = new Button("Adicionar");
 	private Button btnPesquisar = new Button("Pesquisar");
+	private Button btnLimpar = new Button("Limpar");
 	
 	@Override
 	public void start(Stage primaryStage) throws Exception{
@@ -60,10 +61,11 @@ public class HardwareBoundary extends Application implements EventHandler<Action
 		txtGarantia.getItems().setAll(TipoGarantia.values());
 		painelCampos.add(txtGarantia, 1, 3);
 
-		painelBotoes.getChildren().addAll(btnAdicionar, btnPesquisar);
+		painelBotoes.getChildren().addAll(btnAdicionar, btnPesquisar,btnLimpar);
 		
 		btnAdicionar.addEventHandler(ActionEvent.ANY, this);
 		btnPesquisar.addEventHandler(ActionEvent.ANY, this);
+		btnLimpar.addEventHandler(ActionEvent.ANY, this);
 		painelBotoes.setHgap(15);
 		Scene scn = new Scene(painelPrincipal, 300, 190);
 		
@@ -106,9 +108,10 @@ public class HardwareBoundary extends Application implements EventHandler<Action
 			String nome = txtNome.getText();
 			Hardware h = control.pesquisarPorNome(nome);			
 			entidadeParaBoundary(h);
+		} else {
+			Limpatxt();
 		}
 	}
-	
 
 	public static void main(String[] args) {
 		HardwareBoundary.launch(args);
