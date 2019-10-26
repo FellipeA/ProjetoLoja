@@ -117,5 +117,7 @@ public class HardwareBoundary extends Application implements EventHandler<Action
 	public void Limpatxt() {
 		txtNome.clear();
 		txtPreco.clear();
+		txtTipo.setValue(null);
+		txtGarantia.setValue(null);
 	}
 }
