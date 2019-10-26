@@ -1,5 +1,7 @@
 package boundary;
 
+import javax.swing.JOptionPane;
+
 import ENUM.TipoGarantia;
 import ENUM.TipoHardware;
 import control.HardwareControl;
@@ -61,7 +63,7 @@ public class HardwareBoundary extends Application implements EventHandler<Action
 		painelBotoes.getChildren().addAll(btnAdicionar, btnPesquisar);
 		
 		btnAdicionar.addEventHandler(ActionEvent.ANY, this);
-//		btnPesquisar.addEventHandler(ActionEvent.ANY, this);
+		btnPesquisar.addEventHandler(ActionEvent.ANY, this);
 		painelBotoes.setHgap(15);
 		Scene scn = new Scene(painelPrincipal, 300, 190);
 		
@@ -76,35 +78,34 @@ public class HardwareBoundary extends Application implements EventHandler<Action
 		try {
 			h.setTipo(txtTipo.getValue());
 			h.setGarantia(txtGarantia.getValue());
-//			h.setDescricao(txtDescricao.getText());
+			h.setNome(txtNome.getText());
 			h.setPreco(Double.parseDouble(txtPreco.getText()));
+			Limpatxt();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return h;
 	}
-//	
-//	public void entidadeParaBoundary(Hardware h) { 
-//		if (h != null) { 
-//			txtTipo.setText(h.getTipo());
-//			txtFabricante.setText(h.getFabricante());
-//			txtDescricao.setText(h.getDescricao());
-//			txtId.setText(String.valueOf(h.getId()));
-//			txtPreco.setText(String.valueOf(h.getPreco()));
-//			Limpatxt();
-//		} else {
-//			JOptionPane.showMessageDialog(null, "HARDWARE NAO ENCONTRADO!");
-//		}
-//	}
-//	
-//	@Override
+	
+	public void entidadeParaBoundary(Hardware h) { 
+		if (h != null) { 
+			txtTipo.setValue(h.getTipo());
+			txtGarantia.setValue(h.getGarantia());
+			txtNome.setText(h.getNome());
+			txtPreco.setText(String.valueOf(h.getPreco()));
+		} else {
+			JOptionPane.showMessageDialog(null, "HARDWARE NAO ENCONTRADO!");
+		}
+	}
+	
+	@Override
 	public void handle(ActionEvent event) {
 		if (event.getTarget() == btnAdicionar) { 
-//			control.adicionar(null);
+			control.adicionar(boundaryParaEntidade());
 		} else if (event.getTarget() == btnPesquisar) {
 			String nome = txtNome.getText();
 			Hardware h = control.pesquisarPorNome(nome);			
-//			entidadeParaBoundary(h);
+			entidadeParaBoundary(h);
 		}
 	}
 	
