@@ -10,6 +10,16 @@ public class Hardware {
 	private double preco;
 	private String nome;
 	
+	public Hardware(TipoGarantia garantia, TipoHardware tipo, double preco, String nome) {
+		this.garantia = garantia;
+		this.tipo = tipo;
+		this.preco = preco;
+		this.nome = nome;
+	}
+	
+	public Hardware() {
+	}
+	
 	public long getId() {
 		return id;
 	}
