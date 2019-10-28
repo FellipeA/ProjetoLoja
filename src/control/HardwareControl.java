@@ -1,8 +1,8 @@
 package control;
 
+import entity.Hardware;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import model.Hardware;
 
 public class HardwareControl {
 	private ObservableList<Hardware> lista = 

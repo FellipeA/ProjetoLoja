@@ -6,7 +6,7 @@ import javax.swing.JOptionPane;
 import ENUM.TipoGarantia;
 import ENUM.TipoHardware;
 import control.HardwareControl;
-import model.Hardware;
+import entity.Hardware;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
