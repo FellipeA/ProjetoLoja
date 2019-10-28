@@ -132,9 +132,7 @@ public class ClienteBoundary extends Application implements EventHandler<ActionE
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else {
-			JOptionPane.showMessageDialog(null, "HARDWARE NAO ENCONTRADO!");
-		}
+		} 
 		return c;
 }
 
@@ -152,7 +150,6 @@ public void BoundaryEntity (Cliente C) {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-	
 	
 		} else {
 			JOptionPane.showMessageDialog(null, "HARDWARE NAO ENCONTRADO!");
