@@ -77,6 +77,17 @@ public class DevolucaoBoundary extends Application implements EventHandler<Actio
 		botoes.setHgap(15);
 		btnSalvar.setTooltip(dicaSalvar);
 		btnVoltar.setTooltip(dicaVoltar);
+		/* Voltando a Tela Principal */
+		PrincipalGerente pg = new PrincipalGerente();
+		btnVoltar.setOnAction(e -> 
+		{
+			try 
+			{
+				pg.start(new Stage());
+			} catch (Exception e1) {
+				e1.printStackTrace();
+			}
+		});
 		botoes.getChildren().addAll(btnSalvar, btnVoltar);
 		btnSalvar.addEventHandler(ActionEvent.ANY, this);
 		btnVoltar.addEventHandler(ActionEvent.ANY, this);
