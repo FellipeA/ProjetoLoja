@@ -5,15 +5,15 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class HardwareControl {
-	private ObservableList<Hardware> lista = 
+	private ObservableList<Hardware> listaHardware = 
 			FXCollections.observableArrayList();
 	
 	public void adicionar(Hardware h) { 
-		getLista().add(h);
+		listaHardware.add(h);
 	}
 	
 	public Hardware pesquisarPorNome(String nome) { 
-		for (Hardware h : getLista()) { 
+		for (Hardware h : listaHardware) { 
 			if (h.getNome().contains(nome)) { 
 				return h;
 			}
@@ -21,7 +21,16 @@ public class HardwareControl {
 		return null;
 	}
 
-	public ObservableList<Hardware> getLista() {
-		return lista;
+	public void remover(String nome) { 
+		for (Hardware h : listaHardware) { 
+			if (h.getNome().contains(nome)) { 
+				try {
+					listaHardware.remove(h);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		}
 	}
+	
 }
