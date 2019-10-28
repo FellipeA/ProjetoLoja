@@ -65,8 +65,9 @@ public class VisualizarBalanco extends Application implements EventHandler<Actio
 		/* Adicionando Gráficos */
 		PieChart graficoPizza = new PieChart();
 		graficoPizza.setTitle("Lucros / Prejuízos");
-		graficoPizza.setPrefSize(20, 20);
-		graficoPizza.getData().addAll(new PieChart.Data("Lucros", 60), new PieChart.Data("Prejuízo", 40));
+		graficoPizza.setPrefSize(300, 300);
+		graficoPizza.getData().addAll(new PieChart.Data("Faturamento", 70), new PieChart.Data("Lucro", 40));
+		grafico.add(graficoPizza, 0, 10);
 		/* Mostrando Tela */
 		stage.setScene(scn);
 		stage.show();
