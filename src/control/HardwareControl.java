@@ -5,7 +5,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class HardwareControl {
-	private ObservableList<Hardware> lista = 
+	private ObservableList<Hardware> listaHardware = 
 			FXCollections.observableArrayList();
 	
 	public void adicionar(Hardware h) { 
@@ -21,7 +21,14 @@ public class HardwareControl {
 		return null;
 	}
 
+	public void remover(String nome) { 
+		for (Hardware h : getLista()) { 
+			if (h.getNome().contains(nome)) { 
+				getLista().remove(h);
+			}
+		}
+	}
 	public ObservableList<Hardware> getLista() {
-		return lista;
+		return listaHardware;
 	}
 }

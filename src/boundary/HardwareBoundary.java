@@ -1,4 +1,5 @@
 package boundary;
+
 import javax.swing.JOptionPane;
 import ENUM.TipoGarantia;
 import ENUM.TipoHardware;
@@ -29,6 +30,8 @@ public class HardwareBoundary extends Application implements EventHandler<Action
 	private Button btnAdicionar = new Button("Salvar");
 	private Button btnPesquisar = new Button("Pesquisar");
 	private Button btnLimpar = new Button("Limpar");
+	private Button btnRemover = new Button("Remover");
+	private Tooltip dicaRemover = new Tooltip("Remover Hardware");
 	private Tooltip dicaSalvar = new Tooltip("Salvar Novo Hardware");
 	private Tooltip dicaPesquisar = new Tooltip("Pesquisar Hardware pelo Nome");
 	private Tooltip dicaLimpar = new Tooltip("Limpar Todos os Campos");
@@ -58,21 +61,25 @@ public class HardwareBoundary extends Application implements EventHandler<Action
 		txtTipo.getItems().setAll(TipoHardware.values());
 		painelCampos.add(txtTipo, 1, 1);
 		painelCampos.add(new Label("Preço"), 0, 2);
+		txtPreco.setMaxSize(80, 30);
+        txtPreco.setMinSize(80, 30);
 		painelCampos.add(txtPreco, 1, 2);
 		painelCampos.add(new Label("Garantia"), 0, 3);
 		txtGarantia.getItems().setAll(TipoGarantia.values());
 		painelCampos.add(txtGarantia, 1, 3);
 
+		btnRemover.setTooltip(dicaRemover);
 		btnAdicionar.setTooltip(dicaSalvar);
 		btnPesquisar.setTooltip(dicaPesquisar);
 		btnLimpar.setTooltip(dicaLimpar);
-		painelBotoes.getChildren().addAll(btnAdicionar, btnPesquisar,btnLimpar);
+		painelBotoes.getChildren().addAll(btnAdicionar, btnPesquisar,btnRemover, btnLimpar);
 		
+		btnRemover.addEventHandler(ActionEvent.ANY, this);
 		btnAdicionar.addEventHandler(ActionEvent.ANY, this);
 		btnPesquisar.addEventHandler(ActionEvent.ANY, this);
 		btnLimpar.addEventHandler(ActionEvent.ANY, this);
 		painelBotoes.setHgap(15);
-		Scene scn = new Scene(painelPrincipal, 300, 190);
+		Scene scn = new Scene(painelPrincipal, 350, 190);
 		
 		primaryStage.setScene(scn);
 		primaryStage.getIcons().add(new Image(HardwareBoundary.class.getResourceAsStream("icon.png")));
@@ -113,6 +120,10 @@ public class HardwareBoundary extends Application implements EventHandler<Action
 			String nome = txtNome.getText();
 			Hardware h = control.pesquisarPorNome(nome);			
 			entidadeParaBoundary(h);
+		} else if (event.getTarget() == btnRemover) {
+			String nome = txtNome.getText();
+			control.remover(nome);
+			Limpatxt();
 		} else {
 			Limpatxt();
 		}
