@@ -96,6 +96,7 @@ public class ClienteBoundary extends Application implements EventHandler<ActionE
 		grid.add(botoes, 1, 4);
 		S.addEventHandler(ActionEvent.ANY, this);
 		P.addEventHandler(ActionEvent.ANY, this);
+		D.addEventHandler(ActionEvent.ANY, this);
 		
 		stage.setTitle("Cadastro de Clientes");
 		stage.show();	
@@ -149,10 +150,10 @@ public static void main(String[] args) {
 	public void handle(ActionEvent event) {
 		if (event.getTarget() == S) { 
 			ClienteControl.adicionar(EntityBoundary());
-			
+			Limpatxt();
 		} else if (event.getTarget() == P) {
 			String cpf = txtcpf.getText();
-			Cliente C = ClienteControl.pesquisarPorNome(cpf);			
+			Cliente C = ClienteControl.pesquisarPorCPF(cpf);			
 			BoundaryEntity(C);
 		} else if (event.getTarget() == D) {
 			String cpf = txtcpf.getText();
