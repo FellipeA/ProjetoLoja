@@ -35,6 +35,19 @@ public class PrincipalGerente extends Application
 		MF.setTooltip(MFT);
 		MD.setTooltip(MDT);
 		VB.setTooltip(VBT);
+		/* Chamando nova janela */
+		/* Chamando Devolução */
+		DevolucaoBoundary bd = new DevolucaoBoundary();
+		MD.setOnAction(e -> 
+		{
+			try 
+			{
+				bd.start(new Stage());
+			} catch (Exception e1) {
+				e1.printStackTrace();
+			}
+		});
+		/* Chamando VisualizarBalanço */
 		/* Configurando Layout */
 		prGerente.getChildren().addAll(VB,MF,MD);
 		prGerente.setSpacing(20);
