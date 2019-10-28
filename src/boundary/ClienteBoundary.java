@@ -27,8 +27,6 @@ public class ClienteBoundary extends Application implements EventHandler<ActionE
 	private TextField txtcpf = new TextField();
 	private TextField txtcep = new TextField();
 	private TextField txtnum = new TextField();
-//	private TextField txtsalario = new TextField();
-//	private TextField txtSenha = new TextField();
 	private TextField txtlog = new TextField();
 	private TextField txtbrr = new TextField();
 	private TextField txtcid = new TextField();
@@ -57,8 +55,6 @@ public class ClienteBoundary extends Application implements EventHandler<ActionE
 		row4.setPercentHeight(20);
 		RowConstraints row5 = new RowConstraints();
 		row5.setPercentHeight(20);
-//		RowConstraints row6 = new RowConstraints();
-//		row6.setPercentHeight(16.66);
 		
 		grid.getRowConstraints().addAll(row1, row2, row4, row5, row3);
 		grid.getColumnConstraints().addAll(col1, col2);
@@ -66,11 +62,7 @@ public class ClienteBoundary extends Application implements EventHandler<ActionE
 		Scene scn = new Scene(grid, 800, 300);
 		stage.setScene(scn);
 		
-//		grid.setHgap(0);
-//		grid.setVgap(0);
-//	    lblNome.setStyle("-fx-text-fill: black; -fx-font-size:125%;");
-//		grid.setHalignment(lblNome, HPos.RIGHT)
-		
+
 		grid.add(new Label ("CPF: "), 0, 0);
 		txtcpf.setMaxSize(100, 0);
 		grid.add(txtcpf, 1, 0);
@@ -97,20 +89,13 @@ public class ClienteBoundary extends Application implements EventHandler<ActionE
 		grid.add(txtest, 3, 3);
 
 		
-	
-//		grid.add(new Label ("Salario: "), 0, 5);
-//		grid.add(txtsalario, 1, 5);
-
-		
 		FlowPane botoes = new FlowPane();
 		botoes.getChildren().addAll(S, P, D);
 		botoes.setAlignment(Pos.CENTER_LEFT);
 		botoes.setHgap(60);
 		grid.add(botoes, 1, 4);
-//		botoes.getChildren().addAll("");
 		S.addEventHandler(ActionEvent.ANY, this);
 		P.addEventHandler(ActionEvent.ANY, this);
-		/* Mostrando */
 		
 		stage.setTitle("Cadastro de Clientes");
 		stage.show();	
