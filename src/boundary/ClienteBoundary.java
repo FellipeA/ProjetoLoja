@@ -116,30 +116,43 @@ public class ClienteBoundary extends Application implements EventHandler<ActionE
 		stage.show();	
 	
 }
-	public Cliente EntityCliente() {
-		Cliente cli1 = new Cliente();
-		try {
-			cli1.setCpf(txtcpf.getText());
-			cli1.setNome(txtNome.getText());
-			cli1.setCep(txtcep.getText());
-			cli1.setNum(Integer.parseInt(txtnum.getText()));
-		} catch (Exception e) {
-			e.printStackTrace();
-		}	
-		return cli1;
-}
 	
-public void entidadeParaBoundary(Cliente C) { 
-		if (C != null) { 
-			
-			txtcpf.setText(C.getCpf());
-			txtNome.setText(C.getNome());
-			txtcep.setText(C.getCep());
-			txtlog.setText(C.getLog());
-			txtnum.setText(String.valueOf(C.getNum()));
-			txtcid.setText(C.getCidade());
-			txtcep.setText(C.getCep());
+	
+	public Cliente EntityBoundary () {
+		Cliente c = new Cliente();
+		if (c != null) { 
+			try {
+				c.setCpf(txtcpf.getText());
+				c.setNome(txtNome.getText());
+				c.setCep(txtcep.getText());
+				c.setLog(txtlog.getText());
+				c.setNum(Integer.parseInt(txtcpf.getText()));;
+				c.setCidade(txtcid.getText());
 
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else {
+			JOptionPane.showMessageDialog(null, "HARDWARE NAO ENCONTRADO!");
+		}
+		return c;
+}
+
+	
+public void BoundaryEntity (Cliente C) { 
+		if (C != null) { 
+			try {
+				txtcpf.setText(C.getCpf());
+				txtNome.setText(C.getNome());
+				txtcep.setText(C.getCep());
+				txtlog.setText(C.getLog());
+				txtnum.setText(String.valueOf(C.getNum()));
+				txtcid.setText(C.getCidade());
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+	
 	
 		} else {
 			JOptionPane.showMessageDialog(null, "HARDWARE NAO ENCONTRADO!");
@@ -153,15 +166,15 @@ public static void main(String[] args) {
 	@Override
 	public void handle(ActionEvent event) {
 		if (event.getTarget() == S) { 
-			ClienteControl.adicionar(EntityCliente());
-			
+			ClienteControl.adicionar(EntityBoundary());
+			Limpatxt();
 		} else if (event.getTarget() == P) {
 			String cpf = txtcpf.getText();
 			Cliente C = ClienteControl.pesquisarPorNome(cpf);			
-			EntityCliente();
+			BoundaryEntity(C);
 		} else if (event.getTarget() == D) {
-			String nome = txtNome.getText();
-			ClienteControl.remover(nome);
+			String cpf = txtcpf.getText();
+			ClienteControl.remover(cpf);
 			Limpatxt();
 		} else {
 			Limpatxt();
