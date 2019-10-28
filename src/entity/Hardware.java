@@ -17,6 +17,7 @@ public class Hardware {
 	}
 	
 	public Hardware() {
+		
 	}
 	
 	public TipoGarantia getGarantia() {
