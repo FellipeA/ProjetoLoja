@@ -26,7 +26,6 @@ public class PrincipalFuncionario extends Application
 	@Override
 	public void start(Stage stage) throws Exception 
 	{
-		/* Configurando coisas básicas da Tela */
 		stage.setTitle("Menu Principal (Funcionário)");
 		stage.getIcons().add(new Image(PrincipalGerente.class.getResourceAsStream("icon2.png")));
 		VBox prFuncionario = new VBox();
@@ -35,12 +34,26 @@ public class PrincipalFuncionario extends Application
 		btnProduto.setTooltip(dicaProduto);
 		btnVenda.setTooltip(dicaVenda);
 		btnCliente.setTooltip(dicaCliente);
-		/* Configurando Layout */
+		HardwareBoundary hw = new HardwareBoundary();
+		btnProduto.setOnAction(e -> {
+			try {
+				hw.start(new Stage());
+			} catch (Exception e1) {
+				e1.printStackTrace();
+			}
+		});
+		ClienteBoundary cb = new ClienteBoundary();
+		btnCliente.setOnAction(e -> {
+			try {
+				cb.start(new Stage());
+			} catch (Exception e1) {
+				e1.printStackTrace();
+			}
+		});
 		prFuncionario.getChildren().addAll(btnProduto,btnVenda,btnCliente);
 		prFuncionario.setSpacing(20);
 		prFuncionario.setAlignment(Pos.CENTER);
 		brp.setCenter(prFuncionario);
-		/* Mostrando */
 		stage.setScene(Scn);
 		stage.show();
 		
