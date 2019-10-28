@@ -10,6 +10,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
@@ -35,14 +36,16 @@ public class DevolucaoBoundary extends Application
 		BorderPane principal = new BorderPane();
 		FlowPane botoes = new FlowPane();
 		GridPane grp = new GridPane();
-		Scene Scn = new Scene(principal, 300, 190);
+		Scene Scn = new Scene(principal, 550, 400);
+		stage.getIcons().add(new Image(DevolucaoBoundary.class.getResourceAsStream("icon3.jpg")));
 		/* Configurações Específicas */
 		principal.setCenter(grp);
-		principal.setPrefSize(500, 500);
+		principal.setPrefSize(50, 50);
 		principal.setBottom(botoes);
 		
 		grp.setHgap(10);
 		grp.setVgap(5);
+
 		
 		grp.add(new Label("Cliente: "), 0, 0);
 		grp.add(txtCliente, 1, 0);
