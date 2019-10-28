@@ -1,4 +1,4 @@
-package model;
+package entity;
 
 import ENUM.TipoGarantia;
 import ENUM.TipoHardware;
