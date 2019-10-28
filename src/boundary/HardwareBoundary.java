@@ -1,8 +1,5 @@
 package boundary;
-
-
 import javax.swing.JOptionPane;
-
 import ENUM.TipoGarantia;
 import ENUM.TipoHardware;
 import control.HardwareControl;
@@ -40,7 +37,7 @@ public class HardwareBoundary extends Application implements EventHandler<Action
 	public void start(Stage primaryStage) throws Exception{
 		BorderPane painelPrincipal = new BorderPane();
 		painelPrincipal.setStyle("-fx-padding: 20px");
-		painelPrincipal.setPrefSize(500, 500);
+		painelPrincipal.setPrefSize(500, 300);
 		FlowPane painelBotoes = new FlowPane();
 		GridPane painelCampos = new GridPane();
 		ColumnConstraints col0 = new ColumnConstraints();
