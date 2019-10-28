@@ -62,7 +62,6 @@ public class ClienteBoundary extends Application {
 //		grid.setVgap(0);
 //	    lblNome.setStyle("-fx-text-fill: black; -fx-font-size:125%;");
 //		grid.setHalignment(lblNome, HPos.RIGHT);
-//		comentario		
 		
 		grid.add(new Label ("CPF: "), 0, 0);
 		txtcpf.setMaxSize(100, 0);
@@ -93,6 +92,10 @@ public class ClienteBoundary extends Application {
 
 		
 		FlowPane botoes = new FlowPane();
+		botoes.getChildren().addAll(S, P, D);
+		botoes.setAlignment(Pos.CENTER_LEFT);
+		botoes.setHgap(60);
+		grid.add(botoes, 1, 4);
 //		botoes.getChildren().addAll("");
 		
 		stage.setTitle("Cadastro de Contatos");
@@ -107,16 +110,16 @@ public class ClienteBoundary extends Application {
 //		g1.setSalario(Double.parseDouble(txtsalario.getText()));
 //		return g1;
 //}
-	
+//	
 //	public Funcionario EntityFuncionario() {
 //		Gerente f1 = new Gerente();
-////		f1.setNome(txtNome.getText());
+//		f1.setNome(txtNome.getText());
 //		f1.setCep(txtcep.getText());
 //		f1.setNum(Integer.parseInt(txtnum.getText()));
 //		f1.setSalario(Double.parseDouble(txtsalario.getText()));
 //		return f1;
 //}
-		
+//		
 	public static void main(String[] args) {
 		ClienteBoundary.launch(args);
 	}
