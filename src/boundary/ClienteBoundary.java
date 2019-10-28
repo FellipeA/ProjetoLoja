@@ -75,14 +75,17 @@ public class ClienteBoundary extends Application {
 		grid.add(txtcep, 3, 1);
 		grid.add(new Label ("Log: "), 0, 2);
 		txtlog.setMaxSize(400, 0);
+		txtlog.setEditable(false);
 		grid.add(txtlog, 1, 2);
 		grid.add(new Label ("Nº: "), 2, 2);
 		txtnum.setMaxSize(50, 0);
 		grid.add(txtnum, 3, 2);
 		grid.add(new Label ("Cidade: "), 0, 3);
 		txtcid.setMaxSize(200, 0);
+		txtcid.setEditable(false);
 		grid.add(txtcid, 1, 3);
 		grid.add(new Label ("Estado: "), 2, 3);
+		txtest.setEditable(false);
 		txtest.setMaxSize(50, 0);
 		grid.add(txtest, 3, 3);
 
