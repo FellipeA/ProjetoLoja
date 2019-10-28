@@ -1,4 +1,5 @@
 package boundary;
+
 import javax.swing.JOptionPane;
 import ENUM.TipoGarantia;
 import ENUM.TipoHardware;
@@ -58,6 +59,8 @@ public class HardwareBoundary extends Application implements EventHandler<Action
 		txtTipo.getItems().setAll(TipoHardware.values());
 		painelCampos.add(txtTipo, 1, 1);
 		painelCampos.add(new Label("Preço"), 0, 2);
+		txtPreco.setMaxSize(80, 30);
+        txtPreco.setMinSize(80, 30);
 		painelCampos.add(txtPreco, 1, 2);
 		painelCampos.add(new Label("Garantia"), 0, 3);
 		txtGarantia.getItems().setAll(TipoGarantia.values());
