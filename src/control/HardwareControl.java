@@ -9,11 +9,11 @@ public class HardwareControl {
 			FXCollections.observableArrayList();
 	
 	public void adicionar(Hardware h) { 
-		getLista().add(h);
+		listaHardware.add(h);
 	}
 	
 	public Hardware pesquisarPorNome(String nome) { 
-		for (Hardware h : getLista()) { 
+		for (Hardware h : listaHardware) { 
 			if (h.getNome().contains(nome)) { 
 				return h;
 			}
@@ -22,13 +22,14 @@ public class HardwareControl {
 	}
 
 	public void remover(String nome) { 
-		for (Hardware h : getLista()) { 
+		for (Hardware h : listaHardware) { 
 			if (h.getNome().contains(nome)) { 
-				getLista().remove(h);
+				try {
+					listaHardware.remove(h);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 			}
 		}
-	}
-	public ObservableList<Hardware> getLista() {
-		return listaHardware;
 	}
 }
