@@ -37,7 +37,7 @@ public class PrincipalFuncionario extends Application
 		btnCliente.setTooltip(dicaCliente);
 		/* Configurando Layout */
 		prFuncionario.getChildren().addAll(btnProduto,btnVenda,btnCliente);
-		prFuncionario.setSpacing(10);
+		prFuncionario.setSpacing(20);
 		prFuncionario.setAlignment(Pos.CENTER);
 		brp.setCenter(prFuncionario);
 		/* Mostrando */
