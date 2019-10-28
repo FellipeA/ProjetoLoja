@@ -12,22 +12,24 @@ public class ClienteControl {
 		ListaCliente.add(C);
 	}
 	
-	public static Cliente pesquisarPorNome(String nome) { 
+	public static Cliente pesquisarPorCPF(String cpf) { 
 		for (Cliente C : ListaCliente) { 
-			if (C.getCpf().contains(nome)) { 
+			if (C.getCpf().contains(cpf)) { 
 				return C;
 			}
 		}
 		return null;
 	}
 
-	public static void remover(String nome) { 
+	public static void remover(String cpf) { 
 		for (Cliente C : ListaCliente) { 
-			if (C.getNome().contains(nome)) { 
+			if (C.getCpf().contains(cpf)) { 
 				try {
 					ListaCliente.remove(C);
+					System.out.println("REMOVIDO COM SUCESSO");
 				} catch (Exception e) {
 					e.printStackTrace();
+					
 				}
 			}
 		}
