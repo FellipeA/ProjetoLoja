@@ -98,7 +98,7 @@ public class ClienteBoundary extends Application {
 		grid.add(botoes, 1, 4);
 //		botoes.getChildren().addAll("");
 		
-		stage.setTitle("Cadastro de Contatos");
+		stage.setTitle("Cadastro de Clientes");
 		stage.show();	
 	
 }
