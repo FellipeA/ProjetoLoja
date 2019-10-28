@@ -57,7 +57,6 @@ public class DevolucaoBoundary extends Application
 		txtGarantia.getItems().setAll(TipoGarantia.values());
 		grp.add(new Label("Razão: "), 0, 4);
 		grp.add(txtRazao, 1, 4);
-		
 		stage.setScene(Scn);
 		stage.show();
 	}
