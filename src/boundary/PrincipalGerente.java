@@ -43,6 +43,5 @@ public class PrincipalGerente extends Application
 		/* Mostrando */
 		stage.setScene(Scn);
 		stage.show();
-		
 	}
 }
