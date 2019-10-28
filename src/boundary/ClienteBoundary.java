@@ -1,7 +1,14 @@
 package boundary;
 
+import javax.swing.JOptionPane;
+
+import control.ClienteControl;
 import entity.Cliente;
+import entity.Hardware;
 import javafx.application.Application;
+import javafx.beans.property.ReadOnlyBooleanProperty;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.HPos;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -15,13 +22,13 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
 import javafx.stage.Stage;
 
-public class ClienteBoundary extends Application {
+public class ClienteBoundary extends Application implements EventHandler<ActionEvent>{
 	private TextField txtNome = new TextField();
 	private TextField txtcpf = new TextField();
 	private TextField txtcep = new TextField();
 	private TextField txtnum = new TextField();
-	private TextField txtsalario = new TextField();
-	private TextField txtSenha = new TextField();
+//	private TextField txtsalario = new TextField();
+//	private TextField txtSenha = new TextField();
 	private TextField txtlog = new TextField();
 	private TextField txtbrr = new TextField();
 	private TextField txtcid = new TextField();
@@ -101,6 +108,9 @@ public class ClienteBoundary extends Application {
 		botoes.setHgap(60);
 		grid.add(botoes, 1, 4);
 //		botoes.getChildren().addAll("");
+		S.addEventHandler(ActionEvent.ANY, this);
+		P.addEventHandler(ActionEvent.ANY, this);
+		/* Mostrando */
 		
 		stage.setTitle("Cadastro de Clientes");
 		stage.show();	
@@ -108,14 +118,64 @@ public class ClienteBoundary extends Application {
 }
 	public Cliente EntityCliente() {
 		Cliente cli1 = new Cliente();
-		cli1.setCpf(txtcpf.getText());
-		cli1.setNome(txtNome.getText());
-		cli1.setCep(txtcep.getText());
-		cli1.setNum(Integer.parseInt(txtnum.getText()));
+		try {
+			cli1.setCpf(txtcpf.getText());
+			cli1.setNome(txtNome.getText());
+			cli1.setCep(txtcep.getText());
+			cli1.setNum(Integer.parseInt(txtnum.getText()));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}	
 		return cli1;
 }
-	public static void main(String[] args) {
+	
+public void entidadeParaBoundary(Cliente C) { 
+		if (C != null) { 
+			
+			txtcpf.setText(C.getCpf());
+			txtNome.setText(C.getNome());
+			txtcep.setText(C.getCep());
+			txtlog.setText(C.getLog());
+			txtnum.setText(String.valueOf(C.getNum()));
+			txtcid.setText(C.getCidade());
+			txtcep.setText(C.getCep());
+
+	
+		} else {
+			JOptionPane.showMessageDialog(null, "HARDWARE NAO ENCONTRADO!");
+		}
+}
+
+public static void main(String[] args) {
 		ClienteBoundary.launch(args);
+	}
+	
+	@Override
+	public void handle(ActionEvent event) {
+		if (event.getTarget() == S) { 
+			ClienteControl.adicionar(EntityCliente());
+			
+		} else if (event.getTarget() == P) {
+			String cpf = txtcpf.getText();
+			Cliente C = ClienteControl.pesquisarPorNome(cpf);			
+			EntityCliente();
+		} else if (event.getTarget() == D) {
+			String nome = txtNome.getText();
+			ClienteControl.remover(nome);
+			Limpatxt();
+		} else {
+			Limpatxt();
+		}
+	}
+	
+	public void Limpatxt() {
+		txtNome.clear();
+		txtcpf.clear();
+		txtcep.clear();
+		txtlog.clear();
+		txtnum.clear();
+		txtcid.clear();
+		txtest.clear();
 	}
 
 }
