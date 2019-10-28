@@ -12,10 +12,10 @@ import javafx.stage.Stage;
 
 public class PrincipalFuncionario extends Application
 {
-	private Button btnProduto = new Button(" Visualizar Balanço ");
+	private Button btnProduto = new Button(" Manter Produto ");
 	private Button btnVenda = new Button(" Manter Venda ");
 	private Button btnCliente = new Button("  Manter Cliente  ");
-	private Tooltip dicaProduto = new Tooltip(" Visualizar Balanço ");
+	private Tooltip dicaProduto = new Tooltip(" Manter Produto ");
 	private Tooltip dicaVenda = new Tooltip(" Manter Funcionário ");
 	private Tooltip dicaCliente = new Tooltip("  Manter Devolução  ");
 	public static void main(String[] args) 
