@@ -126,7 +126,7 @@ public class ClienteBoundary extends Application implements EventHandler<ActionE
 				c.setNome(txtNome.getText());
 				c.setCep(txtcep.getText());
 				c.setLog(txtlog.getText());
-				c.setNum(Integer.parseInt(txtcpf.getText()));;
+				c.setNum(Integer.parseInt(txtnum.getText()));;
 				c.setCidade(txtcid.getText());
 
 			} catch (Exception e) {
@@ -167,7 +167,7 @@ public static void main(String[] args) {
 	public void handle(ActionEvent event) {
 		if (event.getTarget() == S) { 
 			ClienteControl.adicionar(EntityBoundary());
-			Limpatxt();
+			
 		} else if (event.getTarget() == P) {
 			String cpf = txtcpf.getText();
 			Cliente C = ClienteControl.pesquisarPorNome(cpf);			
