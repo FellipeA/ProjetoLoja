@@ -99,7 +99,6 @@ public class DevolucaoBoundary extends Application implements EventHandler<Actio
 		}
 		return d;
 	}
-	
 	public void handle(ActionEvent event) 
 	{
 		if (event.getTarget() == btnSalvar) 
