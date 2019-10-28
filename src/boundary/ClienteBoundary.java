@@ -1,5 +1,6 @@
 package boundary;
 
+import entity.Cliente;
 import javafx.application.Application;
 import javafx.geometry.HPos;
 import javafx.geometry.Pos;
@@ -102,24 +103,14 @@ public class ClienteBoundary extends Application {
 		stage.show();	
 	
 }
-//	public Gerente EntityGerente() {
-//		Gerente g1 = new Gerente();
-//		g1.setNome(txtNome.getText());
-//		g1.setCep(txtcep.getText());
-//		g1.setNum(Integer.parseInt(txtnum.getText()));
-//		g1.setSalario(Double.parseDouble(txtsalario.getText()));
-//		return g1;
-//}
-//	
-//	public Funcionario EntityFuncionario() {
-//		Gerente f1 = new Gerente();
-//		f1.setNome(txtNome.getText());
-//		f1.setCep(txtcep.getText());
-//		f1.setNum(Integer.parseInt(txtnum.getText()));
-//		f1.setSalario(Double.parseDouble(txtsalario.getText()));
-//		return f1;
-//}
-//		
+	public Cliente EntityCliente() {
+		Cliente cli1 = new Cliente();
+		cli1.setCpf(txtcpf.getText());
+		cli1.setNome(txtNome.getText());
+		cli1.setCep(txtcep.getText());
+		cli1.setNum(Integer.parseInt(txtnum.getText()));
+		return cli1;
+}
 	public static void main(String[] args) {
 		ClienteBoundary.launch(args);
 	}
