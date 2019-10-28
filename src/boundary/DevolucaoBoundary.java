@@ -32,7 +32,6 @@ public class DevolucaoBoundary extends Application
 	{
 		/* Configurações Gerais */
 		stage.setTitle("Devolução");
-		stage.getIcons().add(new Image(DevolucaoBoundary.class.getResourceAsStream("icon3.png")));
 		BorderPane principal = new BorderPane();
 		FlowPane botoes = new FlowPane();
 		GridPane grp = new GridPane();
@@ -57,6 +56,7 @@ public class DevolucaoBoundary extends Application
 		txtGarantia.getItems().setAll(TipoGarantia.values());
 		grp.add(new Label("Razão: "), 0, 4);
 		grp.add(txtRazao, 1, 4);
+		
 		stage.setScene(Scn);
 		stage.show();
 	}
