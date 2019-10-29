@@ -3,23 +3,29 @@ package entity;
 public class Cliente {
 	private String 	nome;
 	private String 	cpf;
-	private String 	cep;
-	private String  log;
-	private String Cidade;
-	private String Bairro;
 	private int    	num;
-
-
-public Cliente(String nome, String cpf, String cep, int num) {
-	this.nome = 	nome;
-	this.cpf  = 	cpf;
-	this.cep  = 	cep;
-	this.num  =		num ;
-}
+	private String  Cep;
+	
 
 public Cliente() {
-	//comentario
+
 }
+
+public Cliente(String nome, String cpf, String cep, int num, String Cep) {
+	this.nome = 	nome;
+	this.cpf  = 	cpf;
+	this.num  =		num;
+	this.Cep  =     Cep;
+}
+
+public String getCep() {
+	return Cep;
+}
+
+public void setCep(String cep) {
+	Cep = cep;
+}
+
 
 
 public String getNome() {
@@ -38,44 +44,18 @@ public void setCpf(String cpf) {
 	this.cpf = cpf;
 }
 
-public String getCep() {
-	return cep;
-}
 
-public void setCep(String cep) {
-	this.cep = cep;
-}
 
 public int getNum() {
 	return num;
 }
 
-public String getCidade() {
-	return Cidade;
-}
-
-public void setCidade(String cidade) {
-	Cidade = cidade;
-}
 
 public void setNum(int num) {
 	this.num = num;
 }
-public String getLog() {
-	return log;
-}
 
-public void setLog(String log) {
-	this.log = log;
-}
 
-public String getBairro() {
-	return Bairro;
-}
-
-public void setBairro(String bairro) {
-	Bairro = bairro;
-}
 
 
 }

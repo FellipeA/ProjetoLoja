@@ -4,6 +4,7 @@ import javax.swing.JOptionPane;
 
 import control.ClienteControl;
 import entity.Cliente;
+import entity.Endereco;
 import entity.Hardware;
 import javafx.application.Application;
 import javafx.beans.property.ReadOnlyBooleanProperty;
@@ -111,18 +112,15 @@ public class ClienteBoundary extends Application implements EventHandler<ActionE
 		stage.show();	
 	
 }
-	
-	
+
 	public Cliente EntityBoundary () {
 		Cliente c = new Cliente();
 		if (c != null) { 
 			try {
 				c.setCpf(txtcpf.getText());
 				c.setNome(txtNome.getText());
-				c.setCep(txtcep.getText());
-				c.setLog(txtlog.getText());
 				c.setNum(Integer.parseInt(txtnum.getText()));;
-				c.setCidade(txtcid.getText());
+				c.setCep(txtcep.getText());
 
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -131,19 +129,21 @@ public class ClienteBoundary extends Application implements EventHandler<ActionE
 		return c;
 }
 
-	
-public void BoundaryEntity (Cliente C) { 
+public void BoundaryEntity (Cliente C, Endereco e) { 
 		if (C != null) { 
 			try {
+				
 				txtcpf.setText(C.getCpf());
 				txtNome.setText(C.getNome());
-				txtcep.setText(C.getCep());
-				txtlog.setText(C.getLog());
 				txtnum.setText(String.valueOf(C.getNum()));
-				txtcid.setText(C.getCidade());
+				txtbrr.setText(e.getBairro());
+				txtcep.setText(e.getCep());
+				txtcid.setText(e.getCidade().toString());
+				txtlog.setText(e.getLog());
+				txtest.setText(e.getEs().toString());
 
-			} catch (Exception e) {
-				e.printStackTrace();
+			} catch (Exception E) {
+				E.printStackTrace();
 			}
 	
 		} else {
@@ -162,8 +162,8 @@ public static void main(String[] args) {
 			Limpatxt();
 		} else if (event.getTarget() == P) {
 			String cpf = txtcpf.getText();
-			Cliente C = ClienteControl.pesquisarPorCPF(cpf);			
-			BoundaryEntity(C);
+			Cliente C = ClienteControl.pesquisarPorCPF(cpf);
+			BoundaryEntity(C, new Endereco());
 		} else if (event.getTarget() == D) {
 			String cpf = txtcpf.getText();
 			ClienteControl.remover(cpf);
@@ -181,6 +181,7 @@ public static void main(String[] args) {
 		txtnum.clear();
 		txtcid.clear();
 		txtest.clear();
+		txtbrr.clear();
 	}
 
 }

@@ -14,13 +14,15 @@ public class ClienteControl {
 	
 	public static Cliente pesquisarPorCPF(String cpf) { 
 		for (Cliente C : ListaCliente) { 
-			if (C.getCpf().contains(cpf)) { 
+			if (C.getCpf().contains(cpf)) {
 				return C;
-			}
 		}
-		return null;
+			else {
+				System.out.println("Cadastrado Não Encontrado");
+			}
 	}
-
+		return null;
+}
 	public static void remover(String cpf) { 
 		for (Cliente C : ListaCliente) { 
 			if (C.getCpf().contains(cpf)) { 
