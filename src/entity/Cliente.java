@@ -6,17 +6,9 @@ public class Cliente {
 	private String 	cep;
 	private String  log;
 	private String Cidade;
+	private String Bairro;
 	private int    	num;
-	
-	
-	
-public String getLog() {
-		return log;
-	}
 
-	public void setLog(String log) {
-		this.log = log;
-	}
 
 public Cliente(String nome, String cpf, String cep, int num) {
 	this.nome = 	nome;
@@ -69,7 +61,21 @@ public void setCidade(String cidade) {
 public void setNum(int num) {
 	this.num = num;
 }
+public String getLog() {
+	return log;
+}
 
+public void setLog(String log) {
+	this.log = log;
+}
+
+public String getBairro() {
+	return Bairro;
+}
+
+public void setBairro(String bairro) {
+	Bairro = bairro;
+}
 
 
 }

@@ -15,6 +15,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.FlowPane;
@@ -37,6 +38,7 @@ public class ClienteBoundary extends Application implements EventHandler<ActionE
 	
 	@Override
 	public void start(Stage stage) {
+		stage.getIcons().add(new Image(PrincipalGerente.class.getResourceAsStream("icon2.png")));
 		GridPane grid = new GridPane();
 		grid.setStyle("-fx-padding:10px; -fx-background-color:white");
 		
@@ -69,24 +71,31 @@ public class ClienteBoundary extends Application implements EventHandler<ActionE
 		grid.add(new Label ("Nome: "), 0, 1);
 		txtNome.setMaxSize(400, 1);
 		grid.add(txtNome, 1, 1);
-		grid.add(new Label ("Cep: "), 2, 1);
+		grid.add(new Label ("	      Cep: "), 2, 1);
 		txtcep.setMaxSize(80, 0);
 		grid.add(txtcep, 3, 1);
 		grid.add(new Label ("Log: "), 0, 2);
 		txtlog.setMaxSize(400, 0);
 		txtlog.setEditable(false);
 		grid.add(txtlog, 1, 2);
-		grid.add(new Label ("Nº: "), 2, 2);
+		grid.add(new Label ("		Nº: "), 2, 2);
 		txtnum.setMaxSize(50, 0);
 		grid.add(txtnum, 3, 2);
-		grid.add(new Label ("Cidade: "), 0, 3);
-		txtcid.setMaxSize(200, 0);
+		grid.add(new Label ("									Cidade: "), 1, 2, 3, 3 );
+		GridPane.setHalignment(txtcid, HPos.RIGHT);
+		txtcid.setMaxSize(180, 0);
 		txtcid.setEditable(false);
 		grid.add(txtcid, 1, 3);
-		grid.add(new Label ("Estado: "), 2, 3);
+		grid.add(new Label ("          Estado: "), 2, 3);
+		GridPane.setHalignment(txtest, HPos.LEFT);
 		txtest.setEditable(false);
 		txtest.setMaxSize(50, 0);
 		grid.add(txtest, 3, 3);
+		grid.add(new Label ("Bairro: "), 0, 3);
+		GridPane.setHalignment(txtbrr, HPos.LEFT);
+		txtbrr.setEditable(false);
+		txtbrr.setMaxSize(200, 0);
+		grid.add(txtbrr, 1, 3);
 
 		
 		FlowPane botoes = new FlowPane();
