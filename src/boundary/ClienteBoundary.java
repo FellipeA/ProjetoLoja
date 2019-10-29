@@ -109,7 +109,7 @@ public class ClienteBoundary extends Application implements EventHandler<ActionE
 		D.addEventHandler(ActionEvent.ANY, this);
 		
 		stage.setTitle("Cadastro de Clientes");
-		stage.show();	
+		stage.show();
 	
 }
 
@@ -132,15 +132,18 @@ public class ClienteBoundary extends Application implements EventHandler<ActionE
 public void BoundaryEntity (Cliente C, Endereco e) { 
 		if (C != null) { 
 			try {
-				
 				txtcpf.setText(C.getCpf());
 				txtNome.setText(C.getNome());
 				txtnum.setText(String.valueOf(C.getNum()));
+				txtcep.setText(C.getCep());
+				System.out.println(C.getCep());
+				System.out.println(e.getCep());
+			if(C.getCep().equals(e.getCep()) ? true : false) {
 				txtbrr.setText(e.getBairro());
-				txtcep.setText(e.getCep());
 				txtcid.setText(e.getCidade().toString());
 				txtlog.setText(e.getLog());
 				txtest.setText(e.getEs().toString());
+			}
 
 			} catch (Exception E) {
 				E.printStackTrace();
