@@ -17,9 +17,6 @@ public class ClienteControl {
 			if (C.getCpf().contains(cpf)) {
 				return C;
 		}
-			else {
-				System.out.println("Cadastrado Não Encontrado");
-			}
 	}
 		return null;
 }
