@@ -147,7 +147,7 @@ public void BoundaryEntity (Cliente C, Endereco e) {
 			}
 	
 		} else {
-			JOptionPane.showMessageDialog(null, "HARDWARE NAO ENCONTRADO!");
+			JOptionPane.showMessageDialog(null, "CADASTRO NAO ENCONTRADO!");
 		}
 }
 
