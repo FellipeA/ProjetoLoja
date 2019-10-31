@@ -50,6 +50,8 @@ public class PrincipalFuncionario extends Application
 				e1.printStackTrace();
 			}
 		});
+		VendaBoundary vb = new VendaBoundary();
+		btnVenda.setOnAction(e -> vb.start(new Stage()));
 		prFuncionario.getChildren().addAll(btnProduto,btnVenda,btnCliente);
 		prFuncionario.setSpacing(20);
 		prFuncionario.setAlignment(Pos.CENTER);

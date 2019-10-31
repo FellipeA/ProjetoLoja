@@ -33,4 +33,9 @@ public class HardwareControl {
 		}
 	}
 	
+	public ObservableList<Hardware> getListaHardware() {
+		return listaHardware;
+	}
+	
+	
 }

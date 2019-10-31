@@ -48,6 +48,8 @@ public class HardwareBoundary extends Application implements EventHandler<Action
 		ColumnConstraints col1 = new ColumnConstraints();
 		col1.setPercentWidth(70);
 		painelCampos.getColumnConstraints().addAll(col0, col1);
+		Hardware h1 = new Hardware(TipoGarantia.GARANTIA_PADRÃO, TipoHardware.PLACA_DE_VÍDEO, 321, "RX580");
+		control.adicionar(h1);
 		
 		painelPrincipal.setCenter(painelCampos);
 		painelPrincipal.setBottom(painelBotoes);
