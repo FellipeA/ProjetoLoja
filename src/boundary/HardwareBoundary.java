@@ -94,7 +94,6 @@ public class HardwareBoundary extends Application implements EventHandler<Action
 		try {
 			h.setTipo(txtTipo.getValue());
 			h.setGarantia(txtGarantia.getValue());
-			System.out.println(h.getGarantia().getTempo()+" Meses");
 			h.setNome(txtNome.getText());
 			h.setPreco(Double.parseDouble(txtPreco.getText()));
 			Limpatxt();
