@@ -2,6 +2,8 @@ package boundary;
 
 import javax.swing.JOptionPane;
 
+import ENUM.TipoGarantia;
+import ENUM.TipoHardware;
 import control.ClienteControl;
 import control.HardwareControl;
 import entity.Cliente;
@@ -29,6 +31,7 @@ import javafx.stage.Stage;
 
 public class VendaBoundary extends Application implements EventHandler<ActionEvent>{
 	private ComboBox<Hardware> comboProduto = new ComboBox<Hardware>();
+	private HardwareControl hc = new HardwareControl();
 	
 	@Override
 	public void start(Stage stage) {
@@ -42,14 +45,14 @@ public class VendaBoundary extends Application implements EventHandler<ActionEve
 		grid.getColumnConstraints().addAll(col0, col1);
 		
 		grid.add((new Label("Produto")), 0, 0);
-		HardwareControl hc = new HardwareControl();
-		
+		Hardware h1 = new Hardware(TipoGarantia.GARANTIA_PADRÃO, TipoHardware.PLACA_DE_VÍDEO, 321, "RX580");	
+		hc.adicionar(h1);
 		for (Hardware h : hc.getListaHardware()) {
 			comboProduto.getItems().add(h);
 		}
 		grid.add(comboProduto, 1, 1);
 		
-		Scene scn = new Scene(grid, 500, 500);
+		Scene scn = new Scene(grid, 800, 600);
 		stage.setScene(scn);
 		stage.setTitle("Venda");
 		stage.show();
