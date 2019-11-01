@@ -138,12 +138,10 @@ public class ClienteBoundary extends Application implements EventHandler<ActionE
 				end.setCidade(json.get("cidade").toString());
 				end.setEs(json.get("estado").toString());
 				c.setEnd(end);
-				
 				c.setCpf(txtcpf.getText());
 				c.setNome(txtNome.getText());
 				c.setNum(Integer.parseInt(txtnum.getText()));;
 				c.setCep(txtcep.getText());
-
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

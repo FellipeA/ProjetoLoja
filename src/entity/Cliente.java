@@ -20,11 +20,12 @@ public Cliente() {
 
 }
 
-public Cliente(String nome, String cpf, int num, String Cep) {
+public Cliente(String nome, String cpf, int num, String Cep, Endereco end) {
 	this.nome = 	nome;
 	this.cpf  = 	cpf;
 	this.num  =		num;
 	this.Cep  =     Cep;
+	this.end = end;
 }
 
 public String getCep() {
