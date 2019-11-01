@@ -1,6 +1,13 @@
 package boundary;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.URL;
+
 import javax.swing.JOptionPane;
+
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 
 import control.ClienteControl;
 import entity.Cliente;
@@ -36,11 +43,12 @@ public class ClienteBoundary extends Application implements EventHandler<ActionE
 	private Button S = new Button("Salvar"); 
 	private Button P = new Button("Pesquisar");
 	private Button D = new Button("Desativar");
+	private GridPane grid = new GridPane();
 	
 	@Override
 	public void start(Stage stage) {
 		stage.getIcons().add(new Image(PrincipalGerente.class.getResourceAsStream("icon2.png")));
-		GridPane grid = new GridPane();
+		
 		grid.setStyle("-fx-padding:10px; -fx-background-color:white");
 		
 		ColumnConstraints col1 = new ColumnConstraints();
@@ -116,8 +124,21 @@ public class ClienteBoundary extends Application implements EventHandler<ActionE
 
 	public Cliente EntityBoundary () {
 		Cliente c = new Cliente();
+		Endereco end = new Endereco();
 		if (c != null) { 
 			try {
+				URL api = new URL("https://api.postmon.com.br/v1/cep/"+txtcep.getText());
+				BufferedReader br = new BufferedReader(new InputStreamReader(api.openStream()));
+				String retorno = br.readLine();
+				JSONParser parser = new JSONParser();
+				JSONObject json = (JSONObject) parser.parse(retorno);
+				end.setBairro(json.get("bairro").toString());
+				end.setCep(txtcep.getText());
+				end.setLog(json.get("logradouro").toString());
+				end.setCidade(json.get("cidade").toString());
+				end.setEs(json.get("estado").toString());
+				c.setEnd(end);
+				
 				c.setCpf(txtcpf.getText());
 				c.setNome(txtNome.getText());
 				c.setNum(Integer.parseInt(txtnum.getText()));;
@@ -130,31 +151,27 @@ public class ClienteBoundary extends Application implements EventHandler<ActionE
 		return c;
 }
 
-public void BoundaryEntity (Cliente C, Endereco e) { 
+public void BoundaryEntity (Cliente C) { 
 		if (C != null) { 
 			try {
 				txtcpf.setText(C.getCpf());
 				txtNome.setText(C.getNome());
 				txtnum.setText(String.valueOf(C.getNum()));
 				txtcep.setText(C.getCep());
-			if(C.getCep().equals(e.getCep())) {
-				txtbrr.setText(e.getBairro());
-				txtcid.setText(e.getCidade().toString());
-				txtlog.setText(e.getLog());
-				txtest.setText(e.getEs().toString());
-			}
-
+				txtbrr.setText(C.getEnd().getBairro());
+				txtcid.setText(C.getEnd().getCidade());
+				txtlog.setText(C.getEnd().getLog());
+				txtest.setText(C.getEnd().getEs());
 			} catch (Exception E) {
 				E.printStackTrace();
 			}
 	
 		} else {
-			JOptionPane.showMessageDialog(null, "CADASTRO NAO ENCONTRADO!");
+			AlertBox.display("ERRO", "CLIENTE NAO ENCONTRADO!");
 		}
 }
 
 public static void main(String[] args) {
-	System.out.println("DIGITE NO CEP: 11111");
 		ClienteBoundary.launch(args);
 	}
 	
@@ -166,7 +183,7 @@ public static void main(String[] args) {
 		} else if (event.getTarget() == P) {
 			String cpf = txtcpf.getText();
 			Cliente C = ClienteControl.pesquisarPorCPF(cpf);
-			BoundaryEntity(C, new Endereco());
+			BoundaryEntity(C);
 		} else if (event.getTarget() == D) {
 			String cpf = txtcpf.getText();
 			ClienteControl.remover(cpf);

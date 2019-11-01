@@ -5,13 +5,22 @@ public class Cliente {
 	private String 	cpf;
 	private int    	num;
 	private String  Cep;
+	private Endereco end;
 	
+
+public Endereco getEnd() {
+		return end;
+	}
+
+	public void setEnd(Endereco end) {
+		this.end = end;
+	}
 
 public Cliente() {
 
 }
 
-public Cliente(String nome, String cpf, String cep, int num, String Cep) {
+public Cliente(String nome, String cpf, int num, String Cep) {
 	this.nome = 	nome;
 	this.cpf  = 	cpf;
 	this.num  =		num;

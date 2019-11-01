@@ -110,7 +110,7 @@ public class HardwareBoundary extends Application implements EventHandler<Action
 			txtNome.setText(h.getNome());
 			txtPreco.setText(String.valueOf(h.getPreco()));
 		} else {
-			JOptionPane.showMessageDialog(null, "HARDWARE NAO ENCONTRADO!");
+			AlertBox.display("ERRO", "HARDWARE NAO ENCONTRADO!");
 		}
 	}
 	

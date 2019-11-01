@@ -26,6 +26,7 @@ public class FuncionarioControl {
 				try {
 					ListaFuncionario.remove(F);
 					System.out.println("REMOVIDO COM SUCESSO");
+					break;
 				} catch (Exception e) {
 					e.printStackTrace();
 					

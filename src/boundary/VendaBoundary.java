@@ -27,6 +27,7 @@ import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class VendaBoundary extends Application implements EventHandler<ActionEvent>{
@@ -36,21 +37,24 @@ public class VendaBoundary extends Application implements EventHandler<ActionEve
 	@Override
 	public void start(Stage stage) {
 		GridPane grid = new GridPane();
-		grid.setStyle("-fx-padding:10px; -fx-background-color:white");
+		grid.setStyle("-fx-background-color: linear-gradient(#E4EAA2, #9CD672); -fx-padding:20px;");
 		grid.setMaxSize(500, 500);
 		ColumnConstraints col0 = new ColumnConstraints();
-		col0.setPercentWidth(30);
+		col0.setPercentWidth(10);
 		ColumnConstraints col1 = new ColumnConstraints();
-		col1.setPercentWidth(70);
+		col1.setPercentWidth(50);
 		grid.getColumnConstraints().addAll(col0, col1);
-		
-		grid.add((new Label("Produto")), 0, 0);
+		Label lblProduto = new Label("Produto");
+		lblProduto.setStyle("-fx-font-size:17px;");
+		grid.add(lblProduto, 0, 0);
 		Hardware h1 = new Hardware(TipoGarantia.GARANTIA_PADRÃO, TipoHardware.PLACA_DE_VÍDEO, 321, "RX580");	
+		Hardware h2 = new Hardware(TipoGarantia.GARANTIA_PADRÃO, TipoHardware.PLACA_DE_VÍDEO, 321, "RX590");
+		Hardware h3 = new Hardware(TipoGarantia.GARANTIA_PADRÃO, TipoHardware.PLACA_DE_VÍDEO, 321, "RX560");
 		hc.adicionar(h1);
-		for (Hardware h : hc.getListaHardware()) {
-			comboProduto.getItems().add(h);
-		}
-		grid.add(comboProduto, 1, 1);
+		hc.adicionar(h2);
+		hc.adicionar(h3);
+		comboProduto.getItems().addAll(hc.getListaHardware());
+		grid.add(comboProduto, 1, 0);
 		
 		Scene scn = new Scene(grid, 800, 600);
 		stage.setScene(scn);
@@ -67,16 +71,13 @@ public class VendaBoundary extends Application implements EventHandler<ActionEve
 	
 	public void addTableColumns() { 
 		TableColumn<Hardware, Long> columnId = new TableColumn<>("Id");
-		columnId.setCellValueFactory(
-				new PropertyValueFactory<Hardware, Long>("id"));
+		columnId.setCellValueFactory(new PropertyValueFactory<Hardware, Long>("id"));
 		
 		TableColumn<Hardware, String> columnTipo = new TableColumn<>("Tipo");
-		columnTipo.setCellValueFactory(
-				new PropertyValueFactory<Hardware, String>("tipo"));
+		columnTipo.setCellValueFactory(new PropertyValueFactory<Hardware, String>("tipo"));
 		
 		TableColumn<Hardware, String> columnFabricante = new TableColumn<>("Fabricante");
-		columnFabricante.setCellValueFactory(
-				new PropertyValueFactory<Hardware, String>("fabricante"));
+		columnFabricante.setCellValueFactory(new PropertyValueFactory<Hardware, String>("fabricante"));
 		
 	}
 
