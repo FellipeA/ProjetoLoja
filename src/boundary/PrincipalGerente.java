@@ -47,6 +47,17 @@ public class PrincipalGerente extends Application
 				e1.printStackTrace();
 			}
 		});
+		/* Chamando Visualizar Balanço */
+		VisualizarBalanco vb = new VisualizarBalanco();
+		VB.setOnAction(e -> 
+		{
+			try 
+			{
+				vb.start(new Stage());
+			} catch (Exception e1) {
+				e1.printStackTrace();
+			}
+		});
 		/* Chamando VisualizarBalanço */
 		/* Configurando Layout */
 		prGerente.getChildren().addAll(VB,MF,MD);
