@@ -7,6 +7,8 @@ public class Venda {
 	private TipoPagamento tipo;
 	private int Quantidade;
 	private double ValorTotal;
+	private Hardware[] produtos;
+	private Cliente cliente;
 	
 	public Venda(TipoPagamento tipo, int Quantidade, double ValorTotal) {
 		this.tipo = tipo;
