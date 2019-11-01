@@ -1,31 +1,31 @@
 package entity;
 
-public class Cliente {
+public class Funcionario {
 	private String 	nome;
 	private String 	cpf;
 	private int    	num;
 	private String  Cep;
-	private Endereco end;
+	private double  salario;
 	
 
-public Endereco getEnd() {
-		return end;
-	}
-
-	public void setEnd(Endereco end) {
-		this.end = end;
-	}
-
-public Cliente() {
+public Funcionario() {
 
 }
 
-public Cliente(String nome, String cpf, int num, String Cep, Endereco end) {
+public Funcionario(String nome, String cpf, String cep, int num, String Cep, double salario) {
 	this.nome = 	nome;
 	this.cpf  = 	cpf;
 	this.num  =		num;
 	this.Cep  =     Cep;
-	this.end = end;
+	this.salario =  salario;
+}
+
+public double getSalario() {
+	return salario;
+}
+
+public void setSalario(double salario) {
+	this.salario = salario;
 }
 
 public String getCep() {
@@ -35,7 +35,6 @@ public String getCep() {
 public void setCep(String cep) {
 	Cep = cep;
 }
-
 
 
 public String getNome() {

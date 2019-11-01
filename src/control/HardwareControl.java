@@ -26,11 +26,17 @@ public class HardwareControl {
 			if (h.getNome().contains(nome)) { 
 				try {
 					listaHardware.remove(h);
+					break;
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
 		}
 	}
+	
+	public ObservableList<Hardware> getListaHardware() {
+		return listaHardware;
+	}
+	
 	
 }

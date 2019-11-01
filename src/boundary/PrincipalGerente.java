@@ -47,6 +47,7 @@ public class PrincipalGerente extends Application
 				e1.printStackTrace();
 			}
 		});
+<<<<<<< HEAD
 		/* Chamando Visualizar Balanço */
 		VisualizarBalanco vb = new VisualizarBalanco();
 		VB.setOnAction(e -> 
@@ -55,6 +56,14 @@ public class PrincipalGerente extends Application
 			{
 				vb.start(new Stage());
 			} catch (Exception e1) {
+=======
+		VisualizarBalanco vb = new VisualizarBalanco();
+		VB.setOnAction(e -> {
+			try {
+				vb.start(new Stage());
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+>>>>>>> branch 'master' of https://github.com/FellipeA/ProjetoLoja
 				e1.printStackTrace();
 			}
 		});

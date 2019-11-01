@@ -48,6 +48,8 @@ public class HardwareBoundary extends Application implements EventHandler<Action
 		ColumnConstraints col1 = new ColumnConstraints();
 		col1.setPercentWidth(70);
 		painelCampos.getColumnConstraints().addAll(col0, col1);
+		Hardware h1 = new Hardware(TipoGarantia.GARANTIA_PADRÃO, TipoHardware.PLACA_DE_VÍDEO, 321, "RX580");
+		control.adicionar(h1);
 		
 		painelPrincipal.setCenter(painelCampos);
 		painelPrincipal.setBottom(painelBotoes);
@@ -92,7 +94,6 @@ public class HardwareBoundary extends Application implements EventHandler<Action
 		try {
 			h.setTipo(txtTipo.getValue());
 			h.setGarantia(txtGarantia.getValue());
-			System.out.println(h.getGarantia().getTempo()+" Meses");
 			h.setNome(txtNome.getText());
 			h.setPreco(Double.parseDouble(txtPreco.getText()));
 			Limpatxt();
@@ -109,7 +110,7 @@ public class HardwareBoundary extends Application implements EventHandler<Action
 			txtNome.setText(h.getNome());
 			txtPreco.setText(String.valueOf(h.getPreco()));
 		} else {
-			JOptionPane.showMessageDialog(null, "HARDWARE NAO ENCONTRADO!");
+			AlertBox.display("ERRO", "HARDWARE NAO ENCONTRADO!");
 		}
 	}
 	

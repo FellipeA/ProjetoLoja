@@ -20,15 +20,15 @@ public class ClienteControl {
 	}
 		return null;
 }
+	
 	public static void remover(String cpf) { 
 		for (Cliente C : ListaCliente) { 
 			if (C.getCpf().contains(cpf)) { 
 				try {
 					ListaCliente.remove(C);
-					System.out.println("REMOVIDO COM SUCESSO");
+					break;
 				} catch (Exception e) {
 					e.printStackTrace();
-					
 				}
 			}
 		}
