@@ -52,6 +52,7 @@ public class PrincipalGerente extends Application
 				e1.printStackTrace();
 			}
 		});
+		
 		prGerente.getChildren().addAll(VB,MF,MD);
 		prGerente.setSpacing(20);
 		prGerente.setAlignment(Pos.CENTER);
