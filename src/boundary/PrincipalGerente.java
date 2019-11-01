@@ -26,7 +26,6 @@ public class PrincipalGerente extends Application
 	@Override
 	public void start(Stage stage) throws Exception 
 	{
-		/* Configurando coisas básicas da Tela */
 		stage.setTitle("Gerente");
 		stage.getIcons().add(new Image(PrincipalGerente.class.getResourceAsStream("icon2.png")));
 		VBox prGerente = new VBox();
@@ -35,8 +34,6 @@ public class PrincipalGerente extends Application
 		MF.setTooltip(MFT);
 		MD.setTooltip(MDT);
 		VB.setTooltip(VBT);
-		/* Chamando nova janela */
-		/* Chamando Devolução */
 		DevolucaoBoundary bd = new DevolucaoBoundary();
 		MD.setOnAction(e -> 
 		{
@@ -52,17 +49,13 @@ public class PrincipalGerente extends Application
 			try {
 				vb.start(new Stage());
 			} catch (Exception e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 		});
-		/* Chamando VisualizarBalanço */
-		/* Configurando Layout */
 		prGerente.getChildren().addAll(VB,MF,MD);
 		prGerente.setSpacing(20);
 		prGerente.setAlignment(Pos.CENTER);
 		brp.setCenter(prGerente);
-		/* Mostrando */
 		stage.setScene(Scn);
 		stage.show();
 	}
