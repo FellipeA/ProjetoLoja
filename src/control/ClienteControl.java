@@ -1,4 +1,6 @@
 package control;
+import java.util.Collection;
+
 import entity.Cliente;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -8,6 +10,10 @@ public class ClienteControl {
 	private static ObservableList<Cliente> ListaCliente = 
 			FXCollections.observableArrayList();
 	
+	public ObservableList<Cliente> getListaCliente() {
+		return ListaCliente;
+	}
+
 	public static void adicionar(Cliente C) { 
 		ListaCliente.add(C);
 	}
@@ -33,5 +39,6 @@ public class ClienteControl {
 			}
 		}
 	}
+
 	
 }

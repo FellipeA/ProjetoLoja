@@ -4,6 +4,7 @@ import javax.swing.JOptionPane;
 
 import ENUM.TipoGarantia;
 import ENUM.TipoHardware;
+import ENUM.TipoPagamento;
 import control.ClienteControl;
 import control.HardwareControl;
 import control.VendaControl;
@@ -36,10 +37,13 @@ import javafx.stage.Stage;
 public class VendaBoundary extends Application implements EventHandler<ActionEvent>{
 	private ComboBox<Hardware> comboProduto = new ComboBox<Hardware>();
 	private ComboBox<Cliente> comboCliente = new ComboBox<Cliente>();
+	private ComboBox<TipoPagamento> comboPagamento = new ComboBox<TipoPagamento>();
 	private HardwareControl hc = new HardwareControl();
+	private ClienteControl cc = new ClienteControl();
 	private VendaControl vc = new VendaControl();
 	private TableView<Hardware> table = new TableView<Hardware>();
 	private Button btnAdicionar = new Button("+");
+	private Button btnConfirmar = new Button("Confirmar Venda");
 	private TableColumn<Hardware, String> columnNome = new TableColumn<>("Nome");
 	private TableColumn<Hardware, TipoHardware> columnTipo = new TableColumn<>("Tipo");
 	private TableColumn<Hardware, TipoGarantia> columnGarantia = new TableColumn<>("Garantia");
@@ -49,9 +53,11 @@ public class VendaBoundary extends Application implements EventHandler<ActionEve
 		BorderPane painelPrincipal = new BorderPane();
 		GridPane grid = new GridPane();
 		FlowPane flow1 = new FlowPane();
+		GridPane grid2 = new GridPane();
 		painelPrincipal.setStyle("-fx-padding:25px");
 		painelPrincipal.setTop(grid);
 		painelPrincipal.setLeft(table);
+		painelPrincipal.setBottom(grid2);
 		grid.setStyle("-fx-padding:20px;");
 		grid.setMaxSize(500, 500);
 		ColumnConstraints col0 = new ColumnConstraints();
@@ -75,9 +81,19 @@ public class VendaBoundary extends Application implements EventHandler<ActionEve
 		grid.setVgap(10);
 		table.setMinSize(515, 200);
 		table.setMaxSize(600, 200);
-		
 		addTableColumns();
+		grid2.add((new Label("Método de Pagamento")), 0, 0);
+		comboCliente.getItems().addAll(cc.getListaCliente());
+		comboPagamento.getItems().addAll(TipoPagamento.values());
+		grid2.add(comboPagamento, 1, 0);
+		grid2.add((new Label("Cliente")), 0, 1);
+		grid2.add(comboCliente, 1, 1);
+		grid2.add(btnConfirmar, 3, 3);
+		grid2.setAlignment(Pos.BASELINE_LEFT);
+		grid2.setHgap(10);
+		grid2.setVgap(10);
 		
+		btnConfirmar.addEventHandler(ActionEvent.ANY, this);
 		btnAdicionar.addEventHandler(ActionEvent.ANY, this);
 		
 		Scene scn = new Scene(painelPrincipal, 800, 600);
