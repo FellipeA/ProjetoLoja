@@ -127,7 +127,6 @@ public class VendaBoundary extends Application implements EventHandler<ActionEve
 	public void handle(ActionEvent event) {
 		if(event.getTarget() == btnAdicionar) {
 			vc.adicionar(comboProduto.getValue());
-			attPreco();
 		}
 	}
 	
