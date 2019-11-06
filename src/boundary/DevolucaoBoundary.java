@@ -5,6 +5,7 @@ import javax.swing.JOptionPane;
 import ENUM.TipoGarantia;
 import ENUM.TipoHardware;
 import control.DevolucaoControl;
+import control.HardwareControl;
 import entity.Devolucao;
 import entity.Hardware;
 import javafx.application.Application;
@@ -29,6 +30,7 @@ public class DevolucaoBoundary extends Application implements EventHandler<Actio
 	private DevolucaoControl control = new DevolucaoControl();
 	private TextField txtCliente = new TextField();
 	private TextField txtVenda = new TextField();
+	private ComboBox<Hardware> comboProduto = new ComboBox<Hardware>();
 	private ComboBox<TipoHardware> txtProduto = new ComboBox<TipoHardware>();
 	private ComboBox<TipoGarantia> txtGarantia = new ComboBox<TipoGarantia>();
 	private TextArea txtRazao = new TextArea();
@@ -45,6 +47,14 @@ public class DevolucaoBoundary extends Application implements EventHandler<Actio
 	@Override
 	public void start(Stage stage) throws Exception 
 	{
+		HardwareControl hc = new HardwareControl();
+		Hardware h1 = new Hardware(TipoGarantia.GARANTIA_PADRÃO, TipoHardware.PLACA_DE_VÍDEO, 321, "RX580");	
+		Hardware h2 = new Hardware(TipoGarantia.GARANTIA_PADRÃO, TipoHardware.PLACA_DE_VÍDEO, 321, "RX590");
+		Hardware h3 = new Hardware(TipoGarantia.GARANTIA_PADRÃO, TipoHardware.PLACA_DE_VÍDEO, 321, "RX560");
+		hc.adicionar(h1);
+		hc.adicionar(h2);
+		hc.adicionar(h3);
+		comboProduto.getItems().addAll(hc.getListaHardware());
 		/* Configurações Gerais */
 		stage.setTitle("Devolução");
 		BorderPane principal = new BorderPane();
