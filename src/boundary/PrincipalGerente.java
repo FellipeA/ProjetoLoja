@@ -42,7 +42,7 @@ public class PrincipalGerente extends Application
 		VB.setTooltip(VBT);
 		btnProduto.setTooltip(dicaProduto);
 		btnVenda.setTooltip(dicaVenda);
-		btnCliente.setTooltip(dicaVenda);
+		btnCliente.setTooltip(dicaCliente);
 		DevolucaoBoundary bd = new DevolucaoBoundary();
 		MD.setOnAction(e -> 
 		{
