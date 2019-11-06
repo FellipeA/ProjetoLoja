@@ -168,7 +168,7 @@ public void BoundaryEntity (Gerente G, Endereco e) {
 		}
 }
 
-public static void main(String[] args) {
+	public static void main(String[] args) {
 		ClienteBoundary.launch(args);
 	}
 	

@@ -160,7 +160,6 @@ public void BoundaryEntity (Funcionario F, Endereco e) {
 }
 
 public static void main(String[] args) {
-	System.out.println("DIGITE NO CEP: 11111");
 		ClienteBoundary.launch(args);
 	}
 	
