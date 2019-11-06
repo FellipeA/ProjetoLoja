@@ -19,6 +19,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -48,6 +49,7 @@ public class VendaBoundary extends Application implements EventHandler<ActionEve
 	private TableColumn<Hardware, TipoHardware> columnTipo = new TableColumn<>("Tipo");
 	private TableColumn<Hardware, TipoGarantia> columnGarantia = new TableColumn<>("Garantia");
 	private TableColumn<Hardware, String> columnPreco = new TableColumn<>("Preço");
+	private DatePicker data = new DatePicker();
 	@Override
 	public void start(Stage stage) {
 		BorderPane painelPrincipal = new BorderPane();
@@ -61,7 +63,7 @@ public class VendaBoundary extends Application implements EventHandler<ActionEve
 		grid.setStyle("-fx-padding:20px;");
 		grid.setMaxSize(500, 500);
 		ColumnConstraints col0 = new ColumnConstraints();
-		col0.setPercentWidth(15);
+		col0.setPercentWidth(20);
 		ColumnConstraints col1 = new ColumnConstraints();
 		col1.setPercentWidth(100);
 		grid.getColumnConstraints().addAll(col0, col1);
@@ -74,6 +76,13 @@ public class VendaBoundary extends Application implements EventHandler<ActionEve
 		hc.adicionar(h1);
 		hc.adicionar(h2);
 		hc.adicionar(h3);
+		ClienteBoundary cb = new ClienteBoundary();
+		Cliente c1 = new Cliente("Fellipe", "12345678910", 99, "03578140", cb.gerarEnd("03578140"));
+		Cliente c2 = new Cliente("Rafael", "10987654321", 123, "03812000", cb.gerarEnd("03812000"));
+		Cliente c3 = new Cliente("José", "5432112345", 321, "08070320", cb.gerarEnd("08070320"));
+		ClienteControl.adicionar(c1);
+		ClienteControl.adicionar(c2);
+		ClienteControl.adicionar(c3);
 		comboProduto.getItems().addAll(hc.getListaHardware());
 		flow1.getChildren().addAll(comboProduto, btnAdicionar);
 		flow1.setHgap(5);
@@ -88,7 +97,9 @@ public class VendaBoundary extends Application implements EventHandler<ActionEve
 		grid2.add(comboPagamento, 1, 0);
 		grid2.add((new Label("Cliente")), 0, 1);
 		grid2.add(comboCliente, 1, 1);
-		grid2.add(btnConfirmar, 3, 3);
+		grid2.add(new Label("Data"), 0, 2);
+		grid2.add(data, 1, 2);
+		grid2.add(btnConfirmar, 6, 6);
 		grid2.setAlignment(Pos.BASELINE_LEFT);
 		grid2.setHgap(10);
 		grid2.setVgap(10);
@@ -102,9 +113,29 @@ public class VendaBoundary extends Application implements EventHandler<ActionEve
 		stage.show();
 	}
 
-
 	public static void main(String[] args) {
 		VendaBoundary.launch(args);
+	}
+	
+	public Venda boundaryParaEntidade() { 
+		Venda v = new Venda();
+		try {
+			v.setProdutos(vc.getlistaItens());
+			v.setData(data.getValue());
+			v.setCliente(comboCliente.getValue());
+			v.setTipo(comboPagamento.getValue());
+			double valorTotal=0;
+			for (Hardware h : vc.getlistaItens()) {
+				valorTotal += h.getPreco();
+			}
+			if (comboPagamento.getValue() == TipoPagamento.DINHEIRO) {
+				valorTotal = valorTotal * TipoPagamento.DINHEIRO.getDesconto();
+			}
+			v.setValorTotal(valorTotal);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return v;
 	}
 	
 	
@@ -127,11 +158,9 @@ public class VendaBoundary extends Application implements EventHandler<ActionEve
 	public void handle(ActionEvent event) {
 		if(event.getTarget() == btnAdicionar) {
 			vc.adicionar(comboProduto.getValue());
+		} else {
+			boundaryParaEntidade();
 		}
-	}
-	
-	private void attPreco() {
-		
 	}
 
 }

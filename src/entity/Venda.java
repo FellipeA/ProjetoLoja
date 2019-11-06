@@ -1,18 +1,23 @@
 package entity;
 
+import java.time.LocalDate;
+import java.util.Date;
+
 import ENUM.TipoPagamento;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class Venda {
 	
 	private TipoPagamento tipo;
-	private int Quantidade;
 	private double ValorTotal;
-	private Hardware[] produtos;
+	private ObservableList<Hardware> produtos = 
+			FXCollections.observableArrayList();
 	private Cliente cliente;
+	private LocalDate data;
 	
-	public Venda(TipoPagamento tipo, int Quantidade, double ValorTotal) {
+	public Venda(TipoPagamento tipo, double ValorTotal) {
 		this.tipo = tipo;
-		this.Quantidade = Quantidade;
 		this.ValorTotal = ValorTotal;
 	}
 	
@@ -28,20 +33,36 @@ public class Venda {
 		this.tipo = tipo;
 	}
 
-	public int getQuantidade() {
-		return Quantidade;
-	}
-
-	public void setQuantidade(int quantidade) {
-		Quantidade = quantidade;
-	}
-
 	public double getValorTotal() {
 		return ValorTotal;
 	}
 
 	public void setValorTotal(double valorTotal) {
 		ValorTotal = valorTotal;
+	}
+
+	public ObservableList<Hardware> getProdutos() {
+		return produtos;
+	}
+
+	public void setProdutos(ObservableList<Hardware> produtos) {
+		this.produtos = produtos;
+	}
+
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+
+	public LocalDate getData() {
+		return data;
+	}
+
+	public void setData(LocalDate localDate) {
+		this.data = localDate;
 	}
 	
 	

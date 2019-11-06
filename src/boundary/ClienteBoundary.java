@@ -1,13 +1,16 @@
 package boundary;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
+import java.net.MalformedURLException;
 import java.net.URL;
 
 import javax.swing.JOptionPane;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 import control.ClienteControl;
 import entity.Cliente;
@@ -124,20 +127,10 @@ public class ClienteBoundary extends Application implements EventHandler<ActionE
 
 	public Cliente EntityBoundary () {
 		Cliente c = new Cliente();
-		Endereco end = new Endereco();
+		
 		if (c != null) { 
 			try {
-				URL api = new URL("https://api.postmon.com.br/v1/cep/"+txtcep.getText());
-				BufferedReader br = new BufferedReader(new InputStreamReader(api.openStream()));
-				String retorno = br.readLine();
-				JSONParser parser = new JSONParser();
-				JSONObject json = (JSONObject) parser.parse(retorno);
-				end.setBairro(json.get("bairro").toString());
-				end.setCep(txtcep.getText());
-				end.setLog(json.get("logradouro").toString());
-				end.setCidade(json.get("cidade").toString());
-				end.setEs(json.get("estado").toString());
-				c.setEnd(end);
+				c.setEnd(gerarEnd());
 				c.setCpf(txtcpf.getText());
 				c.setNome(txtNome.getText());
 				c.setNum(Integer.parseInt(txtnum.getText()));;
@@ -201,5 +194,57 @@ public static void main(String[] args) {
 		txtest.clear();
 		txtbrr.clear();
 	}
+
+	public Endereco gerarEnd() {
+		try {
+			Endereco end = new Endereco();
+			URL api = new URL("https://api.postmon.com.br/v1/cep/"+txtcep.getText());
+			BufferedReader br = new BufferedReader(new InputStreamReader(api.openStream()));
+			String retorno = br.readLine();
+			JSONParser parser = new JSONParser();
+			JSONObject json = (JSONObject) parser.parse(retorno);
+			end.setBairro(json.get("bairro").toString());
+			end.setCep(txtcep.getText());
+			end.setLog(json.get("logradouro").toString());
+			end.setCidade(json.get("cidade").toString());
+			end.setEs(json.get("estado").toString());
+			return end;
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;	}
+	
+	public Endereco gerarEnd(String cep) {
+		try {
+			Endereco end = new Endereco();
+			URL api = new URL("https://api.postmon.com.br/v1/cep/"+cep);
+			BufferedReader br = new BufferedReader(new InputStreamReader(api.openStream()));
+			String retorno = br.readLine();
+			JSONParser parser = new JSONParser();
+			JSONObject json = (JSONObject) parser.parse(retorno);
+			end.setBairro(json.get("bairro").toString());
+			end.setCep(txtcep.getText());
+			end.setLog(json.get("logradouro").toString());
+			end.setCidade(json.get("cidade").toString());
+			end.setEs(json.get("estado").toString());
+			return end;
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;	}
 
 }
