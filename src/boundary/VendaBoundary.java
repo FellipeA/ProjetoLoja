@@ -33,6 +33,7 @@ public class VendaBoundary extends Application implements EventHandler<ActionEve
 	private ComboBox<Cliente> comboCliente = new ComboBox<Cliente>();
 	private ComboBox<TipoPagamento> comboPagamento = new ComboBox<TipoPagamento>();
 	private HardwareControl hc = new HardwareControl();
+	private ClienteBoundary cb = new ClienteBoundary();
 	private ClienteControl cc = new ClienteControl();
 	private VendaControl vc = new VendaControl();
 	private TableView<Hardware> table = new TableView<Hardware>();
@@ -43,6 +44,7 @@ public class VendaBoundary extends Application implements EventHandler<ActionEve
 	private TableColumn<Hardware, TipoGarantia> columnGarantia = new TableColumn<>("Garantia");
 	private TableColumn<Hardware, String> columnPreco = new TableColumn<>("Preço");
 	private DatePicker data = new DatePicker();
+	private Button btnNovo = new Button("Novo Cliente");
 	@Override
 	public void start(Stage stage) {
 		BorderPane painelPrincipal = new BorderPane();
@@ -89,7 +91,9 @@ public class VendaBoundary extends Application implements EventHandler<ActionEve
 		comboPagamento.getItems().addAll(TipoPagamento.values());
 		grid2.add(comboPagamento, 1, 0);
 		grid2.add((new Label("Cliente")), 0, 1);
+		comboCliente.setMinWidth(180);
 		grid2.add(comboCliente, 1, 1);
+		grid2.add(btnNovo, 2, 1);
 		grid2.add(new Label("Data"), 0, 2);
 		grid2.add(data, 1, 2);
 		grid2.add(btnConfirmar, 6, 6);
@@ -99,6 +103,7 @@ public class VendaBoundary extends Application implements EventHandler<ActionEve
 		
 		btnConfirmar.addEventHandler(ActionEvent.ANY, this);
 		btnAdicionar.addEventHandler(ActionEvent.ANY, this);
+		btnNovo.addEventHandler(ActionEvent.ANY, this);
 		
 		Scene scn = new Scene(painelPrincipal, 800, 600);
 		stage.getIcons().add(new Image(VendaBoundary.class.getResourceAsStream("icon6.png")));
@@ -152,8 +157,10 @@ public class VendaBoundary extends Application implements EventHandler<ActionEve
 	public void handle(ActionEvent event) {
 		if(event.getTarget() == btnAdicionar) {
 			vc.adicionar(comboProduto.getValue());
-		} else {
+		} else if (event.getTarget() == btnConfirmar){
 			boundaryParaEntidade();
+		} else {
+			cb.start(new Stage());
 		}
 	}
 
