@@ -21,6 +21,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.FlowPane;
@@ -100,6 +101,7 @@ public class VendaBoundary extends Application implements EventHandler<ActionEve
 		btnAdicionar.addEventHandler(ActionEvent.ANY, this);
 		
 		Scene scn = new Scene(painelPrincipal, 800, 600);
+		stage.getIcons().add(new Image(VendaBoundary.class.getResourceAsStream("icon6.png")));
 		stage.setScene(scn);
 		stage.setTitle("Venda");
 		stage.show();
