@@ -65,7 +65,10 @@ public void setNum(int num) {
 	this.num = num;
 }
 
-
+@Override
+public String toString() {
+	return nome;
+}
 
 
 }

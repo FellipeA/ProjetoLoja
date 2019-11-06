@@ -2,7 +2,7 @@ package ENUM;
 
 public enum TipoPagamento {
 		
-	CARTAO_CREDITO("Cartão de Crédito",1), CARTAO_DEBITO("Cartão de Débito",1), DINHEIRO("Dinheiro",1.05);
+	CARTAO_CREDITO("Cartão de Crédito",1), CARTAO_DEBITO("Cartão de Débito",1), DINHEIRO("Dinheiro",0.95);
 	
 	private String tipo;
 	private double desconto;
