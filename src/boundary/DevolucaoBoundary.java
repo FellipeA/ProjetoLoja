@@ -1,7 +1,5 @@
 package boundary;
 
-import javax.swing.JOptionPane;
-
 import ENUM.TipoGarantia;
 import ENUM.TipoHardware;
 import control.DevolucaoControl;
@@ -75,7 +73,7 @@ public class DevolucaoBoundary extends Application implements EventHandler<Actio
 		grp.add(new Label("Venda: "), 0, 1);
 		grp.add(txtVenda, 1, 1);
 		grp.add(new Label("Produto: "), 0, 2);
-		grp.add(txtProduto, 1, 2);
+		grp.add(comboProduto, 1, 2);
 		txtProduto.getItems().setAll(TipoHardware.values());
 		grp.add(new Label("Garantia: "), 0, 3);
 		grp.add(txtGarantia, 1, 3);

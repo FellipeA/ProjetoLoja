@@ -1,8 +1,6 @@
 package entity;
 
 import java.time.LocalDate;
-import java.util.Date;
-
 import ENUM.TipoPagamento;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

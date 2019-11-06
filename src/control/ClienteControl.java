@@ -1,5 +1,4 @@
 package control;
-import java.util.Collection;
 
 import entity.Cliente;
 import javafx.collections.FXCollections;

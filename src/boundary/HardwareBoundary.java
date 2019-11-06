@@ -1,6 +1,5 @@
 package boundary;
 
-import javax.swing.JOptionPane;
 import ENUM.TipoGarantia;
 import ENUM.TipoHardware;
 import control.HardwareControl;
