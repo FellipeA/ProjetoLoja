@@ -85,6 +85,14 @@ public class PrincipalGerente extends Application
 				e1.printStackTrace();
 			}
 		});
+		VendaBoundary vbb = new VendaBoundary();
+		btnVenda.setOnAction(e -> {
+			try {
+				vbb.start(new Stage());
+			} catch (Exception e1) {
+				e1.printStackTrace();
+			}
+		});
 		
 		prGerente.getChildren().addAll(VB,MF, MD, btnProduto, btnCliente, btnVenda);
 		prGerente.setSpacing(20);

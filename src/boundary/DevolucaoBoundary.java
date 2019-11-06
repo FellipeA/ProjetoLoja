@@ -96,6 +96,7 @@ public class DevolucaoBoundary extends Application implements EventHandler<Actio
 				e1.printStackTrace();
 			}
 		});
+		/* Indo para Tela Venda */
 		botoes.getChildren().addAll(btnSalvar, btnVoltar);
 		btnSalvar.addEventHandler(ActionEvent.ANY, this);
 		btnVoltar.addEventHandler(ActionEvent.ANY, this);
