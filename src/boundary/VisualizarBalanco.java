@@ -81,41 +81,48 @@ public class VisualizarBalanco extends Application implements EventHandler<Actio
 		
 		/* Adicionando Gráficos */
 		/* Gráfico Pizza */
-		PieChart graficoPizza = new PieChart();
-		graficoPizza.setTitle("Lucros / Prejuízos");
-		graficoPizza.setPrefSize(300, 300);
-		graficoPizza.getData().addAll(new PieChart.Data("Faturamento", 70), new PieChart.Data("Lucro", 40));
-		grafico.add(graficoPizza, 0, 10);
-		/* Gráfico de linhas */
-		LineChart GraficoLinha = new LineChart<>(new CategoryAxis(), new NumberAxis());
-		final String tempo0 = "Tempo 0";
-	    final String tempo1 = "Tempo 1";
-		final String tempo2 = "Tempo 2";
-		final String tempo3 = "Tempo 3";
+	
 		
-		XYChart.Series mes0 = new XYChart.Series();
-		mes0.setName("Agosto");
-		mes0.getData().add(new XYChart.Data(tempo0, 10));
-		mes0.getData().add(new XYChart.Data(tempo1, -2));
-		mes0.getData().add(new XYChart.Data(tempo2, 5));
-		mes0.getData().add(new XYChart.Data(tempo3, 3));
+		
+		
+		txtDataFim.setOnAction(new EventHandler<ActionEvent>() { 
+			public void handle(ActionEvent e) { 
+				PieChart graficoPizza = new PieChart();
+				graficoPizza.setTitle("Lucros / Prejuízos");
+				graficoPizza.setPrefSize(300, 300);
+				graficoPizza.getData().addAll(new PieChart.Data("Faturamento", 70), new PieChart.Data("Lucro", 40));
+				grafico.add(graficoPizza, 0, 10);
+				/* Gráfico de linhas */
+				LineChart GraficoLinha = new LineChart<>(new CategoryAxis(), new NumberAxis());
+				final String tempo0 = "Tempo 0";
+			    final String tempo1 = "Tempo 1";
+				final String tempo2 = "Tempo 2";
+				final String tempo3 = "Tempo 3";
+				XYChart.Series mes0 = new XYChart.Series();
+				mes0.setName("Agosto");
+				mes0.getData().add(new XYChart.Data(tempo0, 10));
+				mes0.getData().add(new XYChart.Data(tempo1, -2));
+				mes0.getData().add(new XYChart.Data(tempo2, 5));
+				mes0.getData().add(new XYChart.Data(tempo3, 3));
 
-		XYChart.Series mes1 = new XYChart.Series();
-		mes1.setName("Setembro");
-		mes1.getData().add(new XYChart.Data(tempo0, -5));
-		mes1.getData().add(new XYChart.Data(tempo1, -1));
-		mes1.getData().add(new XYChart.Data(tempo2, 12));
-		mes1.getData().add(new XYChart.Data(tempo3, 8));
+				XYChart.Series mes1 = new XYChart.Series();
+				mes1.setName("Setembro");
+				mes1.getData().add(new XYChart.Data(tempo0, -5));
+				mes1.getData().add(new XYChart.Data(tempo1, -1));
+				mes1.getData().add(new XYChart.Data(tempo2, 12));
+				mes1.getData().add(new XYChart.Data(tempo3, 8));
 
-		XYChart.Series mes2 = new XYChart.Series();
-		mes2.setName("Outubro");
-		mes2.getData().add(new XYChart.Data(tempo0, 3));
-		mes2.getData().add(new XYChart.Data(tempo1, 6));
-		mes2.getData().add(new XYChart.Data(tempo2, 2));
-		mes2.getData().add(new XYChart.Data(tempo3, 10));
-		GraficoLinha.getData().addAll(mes0, mes1, mes2);
-		GraficoLinha.setPrefSize(300, 300);
-		grafico.add(GraficoLinha, 2, 10);
+				XYChart.Series mes2 = new XYChart.Series();
+				mes2.setName("Outubro");
+				mes2.getData().add(new XYChart.Data(tempo0, 3));
+				mes2.getData().add(new XYChart.Data(tempo1, 6));
+				mes2.getData().add(new XYChart.Data(tempo2, 2));
+				mes2.getData().add(new XYChart.Data(tempo3, 10));
+				GraficoLinha.getData().addAll(mes0, mes1, mes2);
+				GraficoLinha.setPrefSize(300, 300);
+				grafico.add(GraficoLinha, 2, 10);
+			}
+		});
 		
 		/* Mostrando Tela */
 		stage.setScene(scn);

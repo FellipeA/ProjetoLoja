@@ -40,13 +40,10 @@ public class ClienteBoundary extends Application implements EventHandler<ActionE
 	private Button P = new Button("Pesquisar");
 	private Button D = new Button("Desativar");
 	private GridPane grid = new GridPane();
+	private Scene scn = new Scene(grid, 800, 300);
 	
-	@Override
-	public void start(Stage stage) {
-		stage.getIcons().add(new Image(PrincipalGerente.class.getResourceAsStream("icon2.png")));
-		
+	public ClienteBoundary() {
 		grid.setStyle("-fx-padding:10px; -fx-background-color:white");
-		
 		ColumnConstraints col1 = new ColumnConstraints();
 		col1.setPercentWidth(8);
 		ColumnConstraints col2 = new ColumnConstraints();
@@ -65,10 +62,6 @@ public class ClienteBoundary extends Application implements EventHandler<ActionE
 		
 		grid.getRowConstraints().addAll(row1, row2, row4, row5, row3);
 		grid.getColumnConstraints().addAll(col1, col2);
-		
-		Scene scn = new Scene(grid, 800, 300);
-		stage.setScene(scn);
-		
 
 		grid.add(new Label ("CPF: "), 0, 0);
 		txtcpf.setMaxSize(100, 0);
@@ -114,6 +107,13 @@ public class ClienteBoundary extends Application implements EventHandler<ActionE
 		P.addEventHandler(ActionEvent.ANY, this);
 		D.addEventHandler(ActionEvent.ANY, this);
 		
+	
+	}
+	@Override
+	public void start(Stage stage) {
+		ClienteBoundary bound = new ClienteBoundary();
+		stage.setScene(scn);
+		stage.getIcons().add(new Image(PrincipalGerente.class.getResourceAsStream("icon2.png")));
 		stage.setTitle("Cadastro de Clientes");
 		stage.show();
 }
@@ -123,7 +123,7 @@ public class ClienteBoundary extends Application implements EventHandler<ActionE
 		
 		if (c != null) { 
 			try {
-				c.setEnd(gerarEnd());
+				c.setEnd(gerarEnd(txtcep.getText() ));
 				c.setCpf(txtcpf.getText());
 				c.setNome(txtNome.getText());
 				c.setNum(Integer.parseInt(txtnum.getText()));;
@@ -203,13 +203,10 @@ public static void main(String[] args) {
 			end.setEs(json.get("estado").toString());
 			return end;
 		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;	}

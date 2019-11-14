@@ -34,14 +34,14 @@ public class HardwareBoundary extends Application implements EventHandler<Action
 	private Tooltip dicaSalvar = new Tooltip("Salvar Novo Hardware");
 	private Tooltip dicaPesquisar = new Tooltip("Pesquisar Hardware pelo Nome");
 	private Tooltip dicaLimpar = new Tooltip("Limpar Todos os Campos");
+	private FlowPane painelBotoes = new FlowPane();
+	private GridPane painelCampos = new GridPane();
+	private BorderPane painelPrincipal = new BorderPane();
+	private Scene scn = new Scene(painelPrincipal, 350, 190);
 	
-	@Override
-	public void start(Stage primaryStage) throws Exception{
-		BorderPane painelPrincipal = new BorderPane();
+	public HardwareBoundary() {
 		painelPrincipal.setStyle("-fx-padding: 20px");
 		painelPrincipal.setPrefSize(500, 300);
-		FlowPane painelBotoes = new FlowPane();
-		GridPane painelCampos = new GridPane();
 		ColumnConstraints col0 = new ColumnConstraints();
 		col0.setPercentWidth(30);
 		ColumnConstraints col1 = new ColumnConstraints();
@@ -80,8 +80,10 @@ public class HardwareBoundary extends Application implements EventHandler<Action
 		btnPesquisar.addEventHandler(ActionEvent.ANY, this);
 		btnLimpar.addEventHandler(ActionEvent.ANY, this);
 		painelBotoes.setHgap(15);
-		Scene scn = new Scene(painelPrincipal, 350, 190);
-		
+	}
+	@Override
+	public void start(Stage primaryStage) throws Exception{
+		HardwareBoundary hb = new HardwareBoundary();
 		primaryStage.setScene(scn);
 		primaryStage.getIcons().add(new Image(HardwareBoundary.class.getResourceAsStream("icon.png")));
 		primaryStage.setTitle("Manter Produto");
