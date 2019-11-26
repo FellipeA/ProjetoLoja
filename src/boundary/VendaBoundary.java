@@ -53,6 +53,9 @@ public class VendaBoundary extends Application implements EventHandler<ActionEve
 	
 	
 	public VendaBoundary() {
+		comboCliente.getItems().addAll(cc.getListaCliente());
+		comboProduto.getItems().addAll(hc.getListaHardware());
+		comboPagamento.getItems().addAll(TipoPagamento.values());
 		painelPrincipal.setStyle("-fx-padding:25px");
 		painelPrincipal.setTop(grid);
 		painelPrincipal.setLeft(table);
@@ -67,7 +70,6 @@ public class VendaBoundary extends Application implements EventHandler<ActionEve
 		Label lblProduto = new Label("Produto");
 		lblProduto.setStyle("-fx-font-size:17px;");
 		grid.add(lblProduto, 0, 0);
-		comboProduto.getItems().addAll(hc.getListaHardware());
 		flow1.getChildren().addAll(comboProduto, btnAdicionar);
 		flow1.setHgap(5);
 		grid.add(flow1, 1, 0);
@@ -76,8 +78,7 @@ public class VendaBoundary extends Application implements EventHandler<ActionEve
 		table.setMaxSize(600, 200);
 		addTableColumns();
 		grid2.add((new Label("Método de Pagamento")), 0, 0);
-		comboCliente.getItems().addAll(cc.getListaCliente());
-		comboPagamento.getItems().addAll(TipoPagamento.values());
+		
 		grid2.add(comboPagamento, 1, 0);
 		grid2.add((new Label("Cliente")), 0, 1);
 		comboCliente.setMinWidth(180);
@@ -94,6 +95,7 @@ public class VendaBoundary extends Application implements EventHandler<ActionEve
 		btnAdicionar.addEventHandler(ActionEvent.ANY, this);
 		btnNovo.addEventHandler(ActionEvent.ANY, this);
 	}
+	
 	public void start(Stage stage) {
 		VendaBoundary vb = new VendaBoundary();
 		stage.getIcons().add(new Image(VendaBoundary.class.getResourceAsStream("icon6.png")));
