@@ -1,5 +1,10 @@
 package control;
 
+import java.sql.SQLException;
+
+import dao.DaoCliente;
+import dao.DaoClienteImp;
+import dao.DaoException;
 import entity.Cliente;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -12,8 +17,18 @@ public class ClienteControl {
 		return ListaCliente;
 	}
 
-	public static void adicionar(Cliente C) { 
-		ListaCliente.add(C);
+	public static void adicionar(Cliente c) 
+	{
+		try 
+		{
+			DaoCliente iCliente = new DaoClienteImp();
+			iCliente.adicionarCliente(c);
+			ListaCliente.add(c);
+		} 
+		catch (ClassNotFoundException | DaoException | SQLException e) 
+		{	
+			e.printStackTrace();
+		}
 	}
 	
 	public static Cliente pesquisarPorCPF(String cpf) { 

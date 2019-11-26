@@ -13,7 +13,8 @@ public class DaoGenerica implements DaoGenericaInt
 		try 
 		{
 			Class.forName("net.sourceforge.jtds.jdbc.Driver");
-			connect = DriverManager.getConnection("jdbc:jtds:sqlserver://127.0.0.1:1433;DatabaseName=Informatica;namedPipes=true", "Gerente", "123456");
+			connect = DriverManager.getConnection("jdbc:jtds:sqlserver://127.0.0.1:1433;DatabaseName=Informatica;namedPipes=true", "gerente","12345");
+			System.out.println("Conexao ok");
 		} 
 		catch (ClassNotFoundException e) 
 		{
@@ -21,4 +22,5 @@ public class DaoGenerica implements DaoGenericaInt
 		}
 		return connect;
 	}
+	
 }
