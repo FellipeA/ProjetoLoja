@@ -8,6 +8,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import entity.Cliente;
+import entity.Endereco;
 
 public class DaoClienteImp implements DaoCliente
 {
@@ -42,57 +43,45 @@ public class DaoClienteImp implements DaoCliente
 		}
 	}
 
-//	@Override
-	public void editarCliente(Cliente cli) throws DaoException {
-//		try {
-//			String sql = "Update cliente SET telefone = ? Where nome_Cliente = ? OR cpf = ? OR cnh = ?";
-//			PreparedStatement state = conexao.prepareStatement(sql);
-//			state.setString(1, cli.getTelefone());
-//			state.setString(2, cli.getNome());
-//			state.setString(3, cli.getCpf());
-//			state.setString(4, cli.getCNH());
-//			state.executeUpdate();
-//		} catch (SQLException e) 
-//		{
-//			e.printStackTrace();
-//			throw new DaoException(e);
-//		}
-	}
 
-//	@Override
-	public Cliente pesquisarCliente(String varpesq) throws DaoException 
+
+	@Override
+	public Cliente pesquisarCliente(String cpf) throws DaoException 
 	{
 		Cliente cli = new Cliente();
-//		try {
-//			String sql = "SELECT * FROM cliente WHERE cnh = ? OR cpf = ? OR nome_Cliente = ?";
-//			PreparedStatement state = conexao.prepareStatement(sql);
-//			state.setString(1, varpesq);
-//			state.setString(2, varpesq);
-//			state.setString(3, varpesq);
-//			ResultSet rs = state.executeQuery();
-//			if(rs.next()) 
-//			{
-//				cli.setId(rs.getLong("id_cliente"));
-//				cli.setCNH(rs.getString("cnh"));
-//				cli.setCPF(rs.getString("cpf"));
-//				cli.setTelefone(rs.getString("telefone"));
-//				cli.setNome(rs.getString("nome_Cliente"));
-//			}
-//		} catch (SQLException e) 
-//		{
-//			e.printStackTrace();
-//			throw new DaoException(e);
-//		}
+		Endereco end = new Endereco();
+		try {
+			String sql = "select * from Cliente inner join Endereço on Endereço.CPF = Cliente.CPF where Cliente.CPF = ?";
+			PreparedStatement state = conexao.prepareStatement(sql);
+			state.setString(1, cpf);
+			ResultSet rs = state.executeQuery();
+			if(rs.next()) 
+			{
+			cli.setCpf(rs.getString("CPF"));
+			cli.setNome(rs.getString("Nome"));
+			end.setCep(rs.getString("CEP"));
+			end.setBairro(rs.getString("Bairro"));
+			end.setCidade(rs.getString("Cidade"));
+			end.setEs(rs.getString("Estado"));
+			end.setLog(rs.getString("Logradouro"));
+			cli.setNum(Integer.parseInt(rs.getString("Numero")));
+			cli.setEnd(end);
+			}
+		} catch (SQLException e) 
+		{
+			e.printStackTrace();
+			throw new DaoException(e);
+		}
 		return cli;
 	}
 //	@Override
 	public List<Cliente> getClientes() throws DaoException
 	{
 		List<Cliente> clientes = new LinkedList();
-//		try {
-//			String sql = "SELECT * FROM Cliente";
-//			PreparedStatement state = conexao.prepareStatement(sql);
-//			ResultSet clients = state.executeQuery();
+		try {
+			String sql = "SELECT * FROM Cliente";
+			PreparedStatement state = conexao.prepareStatement(sql);
+			ResultSet clients = state.executeQuery();
 //			while(clients.next()) 
 //			{
 //				Cliente cli = new Cliente();
@@ -105,12 +94,31 @@ public class DaoClienteImp implements DaoCliente
 //			}
 //			clients.close();
 //			state.close();
-//		} 
-//		catch (SQLException e) 
-//		{
-//			e.printStackTrace();
-//			throw new DaoException(e);
-//		}
+		} 
+		catch (SQLException e) 
+		{
+			e.printStackTrace();
+			throw new DaoException(e);
+		}
 		return clientes;
 	}
+
+	@Override
+	public void removerCliente(Cliente cli) throws DaoException {
+		try {
+			String sql2 = "DELETE FROM Cliente WHERE CPF = ?";
+			String sql = "DELETE FROM Endereço where CPF = ?";
+			PreparedStatement statement = conexao.prepareStatement(sql);
+			PreparedStatement statement2 = conexao.prepareStatement(sql2);
+			statement.setString(1, cli.getCpf());
+			statement2.setString(1, cli.getCpf());
+			statement.executeUpdate();
+			statement2.executeUpdate();
+			statement.close();
+			statement2.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
 }

@@ -1,6 +1,8 @@
 package control;
 
 import java.sql.SQLException;
+import java.util.LinkedList;
+import java.util.List;
 
 import dao.DaoCliente;
 import dao.DaoClienteImp;
@@ -14,9 +16,18 @@ public class ClienteControl {
 	private static ObservableList<Cliente> ListaCliente = 
 			FXCollections.observableArrayList();
 	
-	public ObservableList<Cliente> getListaCliente() {
-		return ListaCliente;
+	public List<Cliente> getListaCliente() {
+		List<Cliente> clientes = new LinkedList();
+		try {
+			DaoCliente iCliente = new DaoClienteImp();
+			clientes = iCliente.getClientes();
+			
+		} catch (ClassNotFoundException | DaoException | SQLException e) {
+			e.printStackTrace();
+		}
+		return clientes;
 	}
+	
 
 	public static void adicionar(Cliente c) 
 	{
@@ -35,24 +46,22 @@ public class ClienteControl {
 	}
 	
 	public static Cliente pesquisarPorCPF(String cpf) { 
-		for (Cliente C : ListaCliente) { 
-			if (C.getCpf().contains(cpf)) {
-				return C;
+		Cliente C = new Cliente();
+		try {
+			DaoCliente iCliente = new DaoClienteImp();
+			C = iCliente.pesquisarCliente(cpf);
+		} catch (ClassNotFoundException | DaoException | SQLException e) {
+			e.printStackTrace();
 		}
-	}
-		return null;
-}
+		return C;
+	} 
 	
-	public static void remover(String cpf) { 
-		for (Cliente C : ListaCliente) { 
-			if (C.getCpf().contains(cpf)) { 
-				try {
-					ListaCliente.remove(C);
-					break;
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
+	public static void remover(String cpf) throws ClassNotFoundException, SQLException { 
+		try {
+			DaoCliente iCliente = new DaoClienteImp();
+			iCliente.removerCliente(pesquisarPorCPF(cpf));
+		} catch (DaoException e) {
+			e.printStackTrace();
 		}
 	}
 
