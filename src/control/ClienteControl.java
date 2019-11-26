@@ -4,6 +4,7 @@ import java.sql.SQLException;
 
 import dao.DaoCliente;
 import dao.DaoClienteImp;
+import dao.DaoEndereco;
 import dao.DaoException;
 import entity.Cliente;
 import javafx.collections.FXCollections;
@@ -23,6 +24,8 @@ public class ClienteControl {
 		{
 			DaoCliente iCliente = new DaoClienteImp();
 			iCliente.adicionarCliente(c);
+			DaoEndereco iEnd = new DaoEndereco();
+			iEnd.adicionarEndereco(c);
 			ListaCliente.add(c);
 		} 
 		catch (ClassNotFoundException | DaoException | SQLException e) 
