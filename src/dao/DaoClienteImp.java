@@ -77,7 +77,7 @@ public class DaoClienteImp implements DaoCliente
 	@Override
 	public List<Cliente> getClientes() throws DaoException
 	{
-		List<Cliente> clientes = new LinkedList();
+		List<Cliente> clientes = new LinkedList<Cliente>();
 		try {
 			String sql = "SELECT * FROM Cliente";
 			PreparedStatement state = conexao.prepareStatement(sql);

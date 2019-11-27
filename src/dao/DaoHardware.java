@@ -6,10 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
-
 import ENUM.TipoGarantia;
 import ENUM.TipoHardware;
-import entity.Cliente;
 import entity.Hardware;
 
 public class DaoHardware implements DaoHardwareI
@@ -51,8 +49,6 @@ public class DaoHardware implements DaoHardwareI
 	public Hardware pesquisarHardware(String nome) throws DaoException 
 	{
 		Hardware h = new Hardware();
-		TipoGarantia gar = null;
-		TipoHardware har = null;
 		try {
 			String sql = "select * "
 					+ "from Produto prod inner join garantia gar on gar.id = prod.garantia_id " + 
@@ -66,16 +62,16 @@ public class DaoHardware implements DaoHardwareI
 			h.setNome(rs.getString("nomeproduto"));
 			h.setPreco(rs.getDouble("preco"));
 			if (Integer.parseInt(rs.getString(6)) == 1) {
-				h.setGarantia(gar.GARANTIA_PADRÃO);
+				h.setGarantia(TipoGarantia.GARANTIA_PADRÃO);
 			} else {
-				h.setGarantia(gar.GARANTIA_ESTENDIDA);
+				h.setGarantia(TipoGarantia.GARANTIA_ESTENDIDA);
 			}
 			if (Integer.parseInt(rs.getString(8)) == 1) {
-				h.setTipo(har.PLACA_DE_VÍDEO);
+				h.setTipo(TipoHardware.PLACA_DE_VÍDEO);
 			} else if (Integer.parseInt(rs.getString(8)) == 2){
-				h.setTipo(har.PROCESSADOR);
+				h.setTipo(TipoHardware.PROCESSADOR);
 			} else {
-				h.setTipo(har.PLACA_MÃE);
+				h.setTipo(TipoHardware.PLACA_MÃE);
 			}
 			}
 		} catch (SQLException e) 
@@ -103,7 +99,7 @@ public class DaoHardware implements DaoHardwareI
 
 	@Override
 	public List<Hardware> getHardwares() throws DaoException {
-		List<Hardware> hardwares = new LinkedList();
+		List<Hardware> hardwares = new LinkedList<Hardware>();
 		try {
 			String sql = "SELECT * FROM Produto";
 			PreparedStatement state = conexao.prepareStatement(sql);

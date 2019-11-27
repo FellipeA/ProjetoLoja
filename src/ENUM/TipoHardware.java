@@ -4,14 +4,6 @@ public enum TipoHardware {
 
 	PLACA_DE_VÍDEO(1,"Placa de Vídeo"), PROCESSADOR(2,"Processador"), PLACA_MÃE(3,"Placa Mãe");
 	
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
 	public int getId() {
 		return id;
 	}

@@ -81,6 +81,7 @@ public class HardwareBoundary extends Application implements EventHandler<Action
 	}
 	@Override
 	public void start(Stage primaryStage) throws Exception{
+		@SuppressWarnings("unused")
 		HardwareBoundary hb = new HardwareBoundary();
 		primaryStage.setScene(scn);
 		primaryStage.getIcons().add(new Image(HardwareBoundary.class.getResourceAsStream("icon.png")));
