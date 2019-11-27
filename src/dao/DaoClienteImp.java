@@ -74,7 +74,7 @@ public class DaoClienteImp implements DaoCliente
 		}
 		return cli;
 	}
-//	@Override
+	@Override
 	public List<Cliente> getClientes() throws DaoException
 	{
 		List<Cliente> clientes = new LinkedList();
@@ -82,18 +82,15 @@ public class DaoClienteImp implements DaoCliente
 			String sql = "SELECT * FROM Cliente";
 			PreparedStatement state = conexao.prepareStatement(sql);
 			ResultSet clients = state.executeQuery();
-//			while(clients.next()) 
-//			{
-//				Cliente cli = new Cliente();
-//				cli.setNome(clients.getString("nome_Cliente"));
-//				cli.setId(clients.getLong("id_Cliente"));
-//				cli.setCNH(clients.getString("cnh"));
-//				cli.setCPF(clients.getString("cpf"));
-//				cli.setTelefone(clients.getString("telefone"));
-//				clientes.add(cli);
-//			}
-//			clients.close();
-//			state.close();
+			while(clients.next()) 
+			{
+				Cliente cli = new Cliente();
+				cli.setNome(clients.getString("nome"));
+				cli.setCpf(clients.getString("cpf"));
+				clientes.add(cli);
+			}
+			clients.close();
+			state.close();
 		} 
 		catch (SQLException e) 
 		{

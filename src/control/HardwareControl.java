@@ -1,5 +1,10 @@
 package control;
 
+import java.sql.SQLException;
+
+import dao.DaoException;
+import dao.DaoHardware;
+import dao.DaoHardwareI;
 import entity.Hardware;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -9,28 +14,42 @@ public class HardwareControl {
 			FXCollections.observableArrayList();
 	
 	public void adicionar(Hardware h) { 
-		listaHardware.add(h);
+		try {
+			DaoHardwareI iHardware = new DaoHardware();
+			iHardware.adicionarHardware(h);
+			listaHardware.add(h);
+			
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (DaoException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
 	}
 	
 	public Hardware pesquisarPorNome(String nome) { 
-		for (Hardware h : listaHardware) { 
-			if (h.getNome().contains(nome)) { 
-				return h;
-			}
+		Hardware h = new Hardware();
+		try {
+			DaoHardwareI iHardware = new DaoHardware();
+			h = iHardware.pesquisarHardware(nome);
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (DaoException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
-		return null;
+		return h;
 	}
 
-	public void remover(String nome) { 
-		for (Hardware h : listaHardware) { 
-			if (h.getNome().contains(nome)) { 
-				try {
-					listaHardware.remove(h);
-					break;
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
+	public void remover(Hardware h) { 
+		try {
+			DaoHardwareI iHardware = new DaoHardware();
+			iHardware.removerHardware(h);
+		} catch (DaoException | ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
 		}
 	}
 	

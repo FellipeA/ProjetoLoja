@@ -2,11 +2,29 @@ package ENUM;
 
 public enum TipoHardware {
 
-	PLACA_DE_VÍDEO("Placa de Vídeo"), PROCESSADOR("Processador"), PLACA_MÃE("Placa Mãe");
+	PLACA_DE_VÍDEO(1,"Placa de Vídeo"), PROCESSADOR(2,"Processador"), PLACA_MÃE(3,"Placa Mãe");
 	
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	private int id;
 	private String nome;
 	
-	TipoHardware(String nome) {
+	TipoHardware(int id,String nome) {
+		this.id = id;
 		this.nome= nome;
 	}
 	
