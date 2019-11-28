@@ -7,8 +7,6 @@ import java.util.List;
 import dao.DaoDevolucao;
 import dao.DaoDevolucaoI;
 import dao.DaoException;
-import dao.DaoHardware;
-import dao.DaoHardwareI;
 import entity.Devolucao;
 import entity.Hardware;
 import javafx.collections.FXCollections;
@@ -49,14 +47,6 @@ public class DevolucaoControl
 		return d;
 	}
 
-	public void remover(Hardware h) { 
-		try {
-			DaoHardwareI iHardware = new DaoHardware();
-			iHardware.removerHardware(h);
-		} catch (DaoException | ClassNotFoundException | SQLException e) {
-			e.printStackTrace();
-		}
-	}
 	
 	public List<Devolucao> getListaDevolucao() {
 		List<Devolucao> devolucoes = new LinkedList();
