@@ -65,7 +65,7 @@ public class FuncionarioBoundary extends Application implements EventHandler<Act
 		
 		Scene scn = new Scene(grid, 800, 300);
 		stage.setScene(scn);
-		
+
 
 		grid.add(new Label ("CPF: "), 0, 0);
 		txtcpf.setMaxSize(100, 0);

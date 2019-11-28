@@ -16,7 +16,8 @@ public class DaoClienteImp implements DaoCliente
 	
 	public DaoClienteImp() throws DaoException, ClassNotFoundException, SQLException
 	{
-		try {
+		try 
+		{
 			DaoGenericaInt i = new DaoGenerica();
 			conexao = i.getConnection();
 		} catch (SQLException e) 
@@ -42,7 +43,6 @@ public class DaoClienteImp implements DaoCliente
 			throw new DaoException(e);
 		}
 	}
-
 
 
 	@Override
