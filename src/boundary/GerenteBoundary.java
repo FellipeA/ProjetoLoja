@@ -3,6 +3,7 @@ package boundary;
 import javax.swing.JOptionPane;
 
 import control.FuncionarioControl;
+import control.GerenteControl;
 import entity.Funcionario;
 import entity.Gerente;
 import entity.Endereco;
@@ -14,6 +15,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.ColumnConstraints;
@@ -32,23 +34,21 @@ public class GerenteBoundary extends Application implements EventHandler<ActionE
 	private TextField txtcid = new TextField();
 	private TextField txtest = new TextField();
 	private TextField txtSalario = new TextField();
-	private TextField txtSenha = new TextField();
+	private PasswordField txtSenha = new PasswordField();
+	private GridPane grid = new GridPane();
+	private Scene scn = new Scene(grid, 800, 300);
+	private FlowPane botoes = new FlowPane();
 	private Button S = new Button("Salvar"); 
 	private Button P = new Button("Pesquisar");
 	private Button D = new Button("Desativar");
 	private Button End = new Button("Gerar Endereço");
 	
-	@Override
-	public void start(Stage stage) {
-		stage.getIcons().add(new Image(PrincipalGerente.class.getResourceAsStream("icon2.png")));
-		GridPane grid = new GridPane();
+	public GerenteBoundary() {
 		grid.setStyle("-fx-padding:10px; -fx-background-color:white");
-		
 		ColumnConstraints col1 = new ColumnConstraints();
 		col1.setPercentWidth(8);
 		ColumnConstraints col2 = new ColumnConstraints();
 		col2.setPercentWidth(60);
-		
 		RowConstraints row1 = new RowConstraints();
 		row1.setPercentHeight(16.66);
 		RowConstraints row2 = new RowConstraints();
@@ -61,15 +61,8 @@ public class GerenteBoundary extends Application implements EventHandler<ActionE
 		row5.setPercentHeight(16.66);
 		RowConstraints row6 = new RowConstraints();
 		row5.setPercentHeight(16.66);
-
-		
 		grid.getRowConstraints().addAll(row1, row2, row3, row4, row5, row6);
 		grid.getColumnConstraints().addAll(col1, col2);
-		
-		Scene scn = new Scene(grid, 800, 300);
-		stage.setScene(scn);
-		
-
 		grid.add(new Label ("CPF: "), 0, 0);
 		txtcpf.setMaxSize(100, 0);
 		grid.add(txtcpf, 1, 0);
@@ -104,14 +97,9 @@ public class GerenteBoundary extends Application implements EventHandler<ActionE
 		grid.add(new Label ("Salario: "), 0, 4);
 		txtSalario.setMaxSize(100, 1);
 		grid.add(txtSalario, 1, 4);
-		grid.add(new Label ("									 Senha: "), 1, 4);
+		grid.add(new Label ("Senha: "), 0, 5);
 		txtSenha.setMaxWidth(180);
-		txtSenha.setAlignment(Pos.BASELINE_LEFT);
-		GridPane.setHalignment(txtSenha, HPos.RIGHT);
-		grid.add(txtSenha, 1, 4);
-
-		
-		FlowPane botoes = new FlowPane();
+		grid.add(txtSenha, 1, 5);
 		botoes.getChildren().addAll(S, P, D);
 		botoes.setAlignment(Pos.CENTER_LEFT);
 		botoes.setHgap(60);
@@ -122,11 +110,17 @@ public class GerenteBoundary extends Application implements EventHandler<ActionE
 		P.addEventHandler(ActionEvent.ANY, this);
 		D.addEventHandler(ActionEvent.ANY, this);
 		
+	}
+	
+	@Override
+	public void start(Stage stage) {
+		stage.getIcons().add(new Image(PrincipalGerente.class.getResourceAsStream("icon2.png")));
+		stage.setScene(scn);
 		stage.setTitle("Cadastro de Gerente");
 		stage.show();
 }
 
-	public Funcionario EntityBoundary () {
+	public Gerente EntityBoundary () {
 		Gerente G = new Gerente();
 		if (G != null) { 
 			try {
@@ -170,13 +164,13 @@ public void BoundaryEntity (Gerente G, Endereco e) {
 }
 
 	public static void main(String[] args) {
-		ClienteBoundary.launch(args);
+		GerenteBoundary.launch(args);
 	}
 	
 	@Override
 	public void handle(ActionEvent event) {
 		if (event.getTarget() == S) { 
-			FuncionarioControl.adicionar(EntityBoundary());
+			GerenteControl.adicionar(EntityBoundary());
 			Limpatxt();
 		} else if (event.getTarget() == P) {
 			String cpf = txtcpf.getText();

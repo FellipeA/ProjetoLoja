@@ -20,8 +20,9 @@ public class GerenteControl
 		try {
 			DaoGerentel iGerente = new DaoGerente();
 			iGerente.adicionarGerente(G);
-			DaoEndereco iEnd = new DaoEndereco();
-			iEnd.adicionarEndereco(G);
+			//DaoEndereco iEnd = new DaoEndereco();
+			//iEnd.adicionarEndereco(G);
+			ListaGerente.add(G);
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (DaoException e) {
