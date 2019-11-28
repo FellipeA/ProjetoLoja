@@ -32,11 +32,11 @@ private Connection con;
 	{
 		try
 		{
-			String sql = "INSERT INTO Gerente " + " (ID, Senha) " + " VALUES (?,?)";
+			String sql = "INSERT INTO Gerente " + " (Senha) " + " VALUES (?)";
 			PreparedStatement statement = con.prepareStatement(sql);
-			statement.setInt(1, g.getID());
-			statement.setString(2, g.getSenha());
+			statement.setString(1, g.getSenha());
 			statement.executeUpdate();
+			statement.close();
 		}
 		catch(Exception e)
 		{
