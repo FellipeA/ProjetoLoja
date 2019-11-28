@@ -4,6 +4,8 @@ import ENUM.TipoGarantia;
 import ENUM.TipoHardware;
 
 public class Hardware {
+	
+	private int id;
 	private TipoGarantia garantia;
 	private TipoHardware tipo;
 	private double preco;
@@ -18,6 +20,14 @@ public class Hardware {
 	
 	public Hardware() {
 		
+	}
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 	
 	public TipoGarantia getGarantia() {

@@ -36,6 +36,7 @@ public class GerenteBoundary extends Application implements EventHandler<ActionE
 	private Button S = new Button("Salvar"); 
 	private Button P = new Button("Pesquisar");
 	private Button D = new Button("Desativar");
+	private Button End = new Button("Gerar Endereço");
 	
 	@Override
 	public void start(Stage stage) {

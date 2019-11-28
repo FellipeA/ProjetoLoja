@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 
+import boundary.AlertBox;
 import entity.Cliente;
 import entity.Endereco;
 
@@ -35,6 +36,7 @@ public class DaoClienteImp implements DaoCliente
 			statement.setString(1, cli.getCpf());
 			statement.setString(2, cli.getNome());
 			statement.executeUpdate();
+			statement.close();
 		} 
 		catch (SQLException e)
 		{
@@ -69,7 +71,7 @@ public class DaoClienteImp implements DaoCliente
 			}
 		} catch (SQLException e) 
 		{
-			e.printStackTrace();
+			AlertBox.display("ERRO", "Cliente não Encontrado");
 			throw new DaoException(e);
 		}
 		return cli;

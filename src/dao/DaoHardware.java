@@ -107,8 +107,8 @@ public class DaoHardware implements DaoHardwareI
 			while(hardware.next()) 
 			{
 				Hardware h = new Hardware();
-				h.setNome(hardware.getString("nome"));
-				h.setPreco(Double.parseDouble(hardware.getString("preco")));
+				h.setNome(hardware.getString("NomeProduto"));
+				h.setPreco(Double.parseDouble(hardware.getString("Preco")));
 				if (Integer.parseInt(hardware.getString(4)) == 1) {
 					h.setGarantia(TipoGarantia.GARANTIA_PADRÃO);
 				} else {

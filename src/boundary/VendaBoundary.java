@@ -20,6 +20,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
@@ -50,6 +51,8 @@ public class VendaBoundary extends Application implements EventHandler<ActionEve
 	private FlowPane flow1 = new FlowPane();
 	private GridPane grid2 = new GridPane();
 	private Scene scn = new Scene(painelPrincipal, 800, 600);
+	private TextField txtValor = new TextField();
+	private double valorTotal;
 	
 	
 	public VendaBoundary() {
@@ -86,6 +89,11 @@ public class VendaBoundary extends Application implements EventHandler<ActionEve
 		grid2.add(btnNovo, 2, 1);
 		grid2.add(new Label("Data"), 0, 2);
 		grid2.add(data, 1, 2);
+		grid2.add(new Label("Valor Total"), 0, 3);
+		txtValor.setEditable(false);
+		txtValor.setMinSize(100, 25);
+		txtValor.setMaxSize(100, 25);
+		grid2.add(txtValor, 1, 3);
 		grid2.add(btnConfirmar, 6, 6);
 		grid2.setAlignment(Pos.BASELINE_LEFT);
 		grid2.setHgap(10);
@@ -149,6 +157,8 @@ public class VendaBoundary extends Application implements EventHandler<ActionEve
 	public void handle(ActionEvent event) {
 		if(event.getTarget() == btnAdicionar) {
 			vc.adicionar(comboProduto.getValue());
+			valorTotal+=comboProduto.getValue().getPreco();
+			txtValor.setText(String.valueOf(valorTotal));
 		} else if (event.getTarget() == btnConfirmar){
 			boundaryParaEntidade();
 		} else {
