@@ -6,7 +6,16 @@ public class Funcionario {
 	private int    	num;
 	private String  Cep;
 	private double  salario;
+	private Endereco end;
 	
+
+public Endereco getEnd() {
+		return end;
+	}
+
+	public void setEnd(Endereco end) {
+		this.end = end;
+	}
 
 public Funcionario() {
 

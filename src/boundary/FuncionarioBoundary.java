@@ -1,6 +1,16 @@
 package boundary;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.MalformedURLException;
+import java.net.URL;
+
 import javax.swing.JOptionPane;
+
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 import control.FuncionarioControl;
 import entity.Funcionario;
@@ -34,6 +44,7 @@ public class FuncionarioBoundary extends Application implements EventHandler<Act
 	private Button S = new Button("Salvar"); 
 	private Button P = new Button("Pesquisar");
 	private Button D = new Button("Desativar");
+	private Button End = new Button("Gerar Endereço");
 	
 	@Override
 	public void start(Stage stage) {
@@ -76,6 +87,7 @@ public class FuncionarioBoundary extends Application implements EventHandler<Act
 		grid.add(new Label ("	      Cep: "), 2, 1);
 		txtcep.setMaxSize(80, 0);
 		grid.add(txtcep, 3, 1);
+		grid.add(End, 4, 1);
 		grid.add(new Label ("Log: "), 0, 2);
 		txtlog.setMaxSize(400, 0);
 		txtlog.setEditable(false);
@@ -113,6 +125,7 @@ public class FuncionarioBoundary extends Application implements EventHandler<Act
 		S.addEventHandler(ActionEvent.ANY, this);
 		P.addEventHandler(ActionEvent.ANY, this);
 		D.addEventHandler(ActionEvent.ANY, this);
+		End.addEventHandler(ActionEvent.ANY, this);
 		
 		stage.setTitle("Cadastro de Funcionario");
 		stage.show();
@@ -127,6 +140,7 @@ public class FuncionarioBoundary extends Application implements EventHandler<Act
 				F.setNum(Integer.parseInt(txtnum.getText()));;
 				F.setCep(txtcep.getText());
 				F.setSalario(Double.parseDouble(txtSalario.getText()));
+				F.setEnd(gerarEnd());
 
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -135,7 +149,7 @@ public class FuncionarioBoundary extends Application implements EventHandler<Act
 		return F;
 }
 
-public void BoundaryEntity (Funcionario F, Endereco e) { 
+public void BoundaryEntity (Funcionario F) { 
 		if (F != null) { 
 			try {
 				txtcpf.setText(F.getCpf());
@@ -143,12 +157,10 @@ public void BoundaryEntity (Funcionario F, Endereco e) {
 				txtnum.setText(String.valueOf(F.getNum()));
 				txtcep.setText(F.getCep());
 				txtSalario.setText(String.valueOf(F.getSalario()));
-			if(F.getCep().equals(e.getCep())) {
-				txtbrr.setText(e.getBairro());
-				txtcid.setText(e.getCidade().toString());
-				txtlog.setText(e.getLog());
-				txtest.setText(e.getEs().toString());
-			}
+				txtbrr.setText(F.getEnd().getBairro());
+				txtcid.setText(F.getEnd().getCidade());
+				txtlog.setText(F.getEnd().getLog());
+				txtest.setText(F.getEnd().getEs());
 
 			} catch (Exception E) {
 				E.printStackTrace();
@@ -169,15 +181,14 @@ public static void main(String[] args) {
 			FuncionarioControl.adicionar(EntityBoundary());
 			Limpatxt();
 		} else if (event.getTarget() == P) {
-			String cpf = txtcpf.getText();
-			Funcionario F = FuncionarioControl.pesquisarPorCPF(cpf);
-			BoundaryEntity(F, new Endereco());
+			Funcionario F = FuncionarioControl.pesquisarPorCPF(txtcpf.getText());
+			BoundaryEntity(F);
 		} else if (event.getTarget() == D) {
 			String cpf = txtcpf.getText();
 			FuncionarioControl.remover(cpf);
 			Limpatxt();
 		} else {
-			Limpatxt();
+			mostraEnd(gerarEnd());
 		}
 	}
 	
@@ -193,4 +204,35 @@ public static void main(String[] args) {
 		txtSalario.clear();
 	}
 
+	private void mostraEnd(Endereco end) {
+		txtcep.setText(end.getCep());
+		txtcid.setText(end.getCidade());
+		txtest.setText(end.getEs());
+		txtbrr.setText(end.getBairro());
+		txtlog.setText(end.getLog());
+	}
+	
+	public Endereco gerarEnd() {
+		try {
+			Endereco end = new Endereco();
+			URL api = new URL("https://api.postmon.com.br/v1/cep/"+txtcep.getText());
+			BufferedReader br = new BufferedReader(new InputStreamReader(api.openStream()));
+			String retorno = br.readLine();
+			JSONParser parser = new JSONParser();
+			JSONObject json = (JSONObject) parser.parse(retorno);
+			end.setBairro(json.get("bairro").toString());
+			end.setCep(txtcep.getText());
+			end.setLog(json.get("logradouro").toString());
+			end.setCidade(json.get("cidade").toString());
+			end.setEs(json.get("estado").toString());
+			return end;
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		return null;	
+		}
 }

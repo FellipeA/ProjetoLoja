@@ -1,4 +1,11 @@
 package control;
+import java.sql.SQLException;
+
+import dao.DaoEndereco;
+import dao.DaoException;
+import dao.DaoFuncionario;
+import dao.DaoFuncionariol;
+import dao.DaoGenericaInt;
 import entity.Funcionario;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -9,30 +16,37 @@ public class FuncionarioControl {
 			FXCollections.observableArrayList();
 	
 	public static void adicionar(Funcionario F) { 
-		ListaFuncionario.add(F);
+		try {
+			DaoFuncionario iFuncionario = new DaoFuncionariol();
+			iFuncionario.adicionarFuncionario(F);
+			DaoEndereco iEnd = new DaoEndereco();
+			iEnd.adicionarEndereco(F);
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (DaoException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public static Funcionario pesquisarPorCPF(String cpf) { 
-		for (Funcionario F : ListaFuncionario) { 
-			if (F.getCpf().contains(cpf)) {
-				return F;
+		Funcionario Func = new Funcionario();
+		try {
+			DaoFuncionario iFuncionario = new DaoFuncionariol();
+			Func = iFuncionario.pesquisarFuncionario(cpf);
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (DaoException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
+		return Func;
 	}
-		return null;
-}
+		
 	public static void remover(String cpf) { 
-		for (Funcionario F : ListaFuncionario) { 
-			if (F.getCpf().contains(cpf)) { 
-				try {
-					ListaFuncionario.remove(F);
-					System.out.println("REMOVIDO COM SUCESSO");
-					break;
-				} catch (Exception e) {
-					e.printStackTrace();
-					
-				}
-			}
-		}
+		
 	}
 	
 }
