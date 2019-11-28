@@ -8,7 +8,7 @@ import entity.Funcionario;
 public interface DaoFuncionario 
 {
 	void adicionarFuncionario(Funcionario f) throws DaoException;
-	void removerFuncionario(Funcionario f) throws DaoException;
+	void removerFuncionario(String cpf) throws DaoException;
 	Funcionario pesquisarFuncionario(String cpf) throws DaoException;
 	List<Funcionario> getFuncionario() throws DaoException;
 }

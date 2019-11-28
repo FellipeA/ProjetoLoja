@@ -31,12 +31,11 @@ public class DaoFuncionariol implements DaoFuncionario
 	{
 		try
 		{
-			String sql = "INSERT INTO cliente " + " (Nome,CPF, Salario, ID) " + " VALUES (?,?,?,?)";
+			String sql = "INSERT INTO Funcionario " + " (Nome,CPF, Salario) " + " VALUES (?,?,?)";
 			PreparedStatement statement = con.prepareStatement(sql);
 			statement.setString(1, f.getNome());
 			statement.setString(2, f.getCpf());
 			statement.setDouble(3, f.getSalario());
-			statement.setInt(4, f.getNum());
 			statement.executeUpdate();
 		}
 		catch(Exception e)
@@ -47,15 +46,15 @@ public class DaoFuncionariol implements DaoFuncionario
 	}
 
 	@Override
-	public void removerFuncionario(Funcionario f) throws DaoException 
+	public void removerFuncionario(String cpf) throws DaoException 
 	{
 		try {
 			String sql2 = "DELETE FROM Funcionario WHERE CPF = ?";
 			String sql = "DELETE FROM Endereço where CPF = ?";
 			PreparedStatement statement = con.prepareStatement(sql);
 			PreparedStatement statement2 = con.prepareStatement(sql2);
-			statement.setString(1, f.getCpf());
-			statement2.setString(1, f.getCpf());
+			statement.setString(1, cpf);
+			statement2.setString(1, cpf);
 			statement.executeUpdate();
 			statement2.executeUpdate();
 			statement.close();
@@ -85,7 +84,7 @@ public class DaoFuncionariol implements DaoFuncionario
 			end.setCidade(rs.getString("Cidade"));
 			end.setEs(rs.getString("Estado"));
 			end.setLog(rs.getString("Logradouro"));
-			f.setNum(Integer.parseInt(rs.getString("Numero")));
+			f.setEnd(end);
 			}
 		}
 		catch (SQLException e) 
