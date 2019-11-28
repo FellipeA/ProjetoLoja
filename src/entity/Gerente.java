@@ -2,7 +2,8 @@ package entity;
 
 public class Gerente extends Funcionario{
 	private String senha;
-	public Gerente(String nome, String cpf, String cep, int num, double salario, String Senha) {
+	private int id;
+	public Gerente(String nome, String cpf, String cep, int num, double salario, String Senha, int id) {
 		super(nome, cpf, cep, num, cep, salario);
 	}
 	
@@ -18,5 +19,12 @@ public class Gerente extends Funcionario{
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-
+	public void setID(int id)
+	{
+		this.id = id;
+	}
+	public int getID()
+	{
+		return id;
+	}
 }
