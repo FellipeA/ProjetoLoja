@@ -1,5 +1,6 @@
 package entity;
 
+
 import ENUM.TipoGarantia;
 import ENUM.TipoHardware;
 
@@ -12,7 +13,7 @@ public class Devolucao
 	private String razao;
 	
 	public Devolucao(String cliente, String venda, TipoHardware produto, TipoGarantia garantia, String razao) 
-	{
+	{	
 		this.cliente = cliente;
 		this.venda = venda;
 		this.produto = produto;
@@ -63,4 +64,5 @@ public class Devolucao
 	{
 		this.razao = razao;
 	}
+
 }
