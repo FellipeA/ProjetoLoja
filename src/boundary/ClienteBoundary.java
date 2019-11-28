@@ -65,7 +65,6 @@ public class ClienteBoundary extends Application implements EventHandler<ActionE
 		
 		grid.getRowConstraints().addAll(row1, row2, row4, row5, row3);
 		grid.getColumnConstraints().addAll(col1, col2);
-
 		grid.add(new Label ("CPF: "), 0, 0);
 		txtcpf.setMaxSize(100, 0);
 		grid.add(txtcpf, 1, 0);

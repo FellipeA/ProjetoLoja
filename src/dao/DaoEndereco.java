@@ -52,7 +52,7 @@ public class DaoEndereco implements IDaoEndereco{
 			statement.setString(3, f.getEnd().getCidade());
 			statement.setString(4, f.getEnd().getBairro());
 			statement.setString(5, f.getEnd().getEs());
-			statement.setString(6, String.valueOf(f.getNum()));
+			statement.setInt(6, (f.getNum()));
 			statement.setString(7, f.getCpf());
 			statement.executeUpdate();
 			statement.close();
