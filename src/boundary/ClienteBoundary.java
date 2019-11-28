@@ -125,18 +125,16 @@ public class ClienteBoundary extends Application implements EventHandler<ActionE
 
 	public Cliente EntityBoundary () {
 		Cliente c = new Cliente();
-		
-		if (c != null) { 
-			try {
-				c.setEnd(gerarEnd());
-				c.setCpf(txtcpf.getText());
-				c.setNome(txtNome.getText());
-				c.setNum(Integer.parseInt(txtnum.getText()));;
-				c.setCep(txtcep.getText());
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		} 
+		try {
+			c.setEnd(gerarEnd());
+			c.setCpf(txtcpf.getText());
+			c.setNome(txtNome.getText());
+			c.setNum(Integer.parseInt(txtnum.getText()));;
+			c.setCep(txtcep.getText());
+		} catch (Exception e) {
+			AlertBox.display("ERRO", "Cliente não encontrado!");
+		}
+			
 		return c;
 }
 
@@ -160,7 +158,7 @@ public void BoundaryEntity (Cliente C) {
 		}
 }
 
-public static void main(String[] args) {
+	public static void main(String[] args) {
 		ClienteBoundary.launch(args);
 	}
 	

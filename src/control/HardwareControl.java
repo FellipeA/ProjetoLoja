@@ -1,10 +1,15 @@
 package control;
 
 import java.sql.SQLException;
+import java.util.LinkedList;
+import java.util.List;
 
+import dao.DaoCliente;
+import dao.DaoClienteImp;
 import dao.DaoException;
 import dao.DaoHardware;
 import dao.DaoHardwareI;
+import entity.Cliente;
 import entity.Hardware;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -53,9 +58,18 @@ public class HardwareControl {
 		}
 	}
 	
-	public ObservableList<Hardware> getListaHardware() {
-		return listaHardware;
+	public List<Hardware> getListaHardware() {
+		List<Hardware> hardware = new LinkedList();
+		try {
+			DaoHardwareI iHardware = new DaoHardware();
+			hardware = iHardware.getHardwares();
+			
+		} catch (ClassNotFoundException | DaoException | SQLException e) {
+			e.printStackTrace();
+		}
+		return hardware;
 	}
+	
 	
 	
 }

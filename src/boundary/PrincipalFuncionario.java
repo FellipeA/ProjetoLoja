@@ -18,19 +18,16 @@ public class PrincipalFuncionario extends Application
 	private Tooltip dicaProduto = new Tooltip(" Manter Produto ");
 	private Tooltip dicaVenda = new Tooltip(" Manter Funcionário ");
 	private Tooltip dicaCliente = new Tooltip("  Manter Devolução  ");
+	private BorderPane brp = new BorderPane();
+	private Scene Scn = new Scene(brp, 250, 250);
+	private VBox prFuncionario = new VBox();
+	
 	public static void main(String[] args) 
 	{
 		Application.launch(args);
 	}
-
-	@Override
-	public void start(Stage stage) throws Exception 
-	{
-		stage.setTitle("Menu Principal (Funcionário)");
-		stage.getIcons().add(new Image(PrincipalGerente.class.getResourceAsStream("icon2.png")));
-		VBox prFuncionario = new VBox();
-		BorderPane brp = new BorderPane();
-		Scene Scn = new Scene(brp, 250, 250);
+	
+	public PrincipalFuncionario() {
 		btnProduto.setTooltip(dicaProduto);
 		btnVenda.setTooltip(dicaVenda);
 		btnCliente.setTooltip(dicaCliente);
@@ -56,6 +53,14 @@ public class PrincipalFuncionario extends Application
 		prFuncionario.setSpacing(20);
 		prFuncionario.setAlignment(Pos.CENTER);
 		brp.setCenter(prFuncionario);
+	}
+
+	@Override
+	public void start(Stage stage) throws Exception 
+	{
+		PrincipalFuncionario pf = new PrincipalFuncionario();
+		stage.setTitle("Menu Principal (Funcionário)");
+		stage.getIcons().add(new Image(PrincipalGerente.class.getResourceAsStream("icon2.png")));
 		stage.setScene(Scn);
 		stage.show();
 		
