@@ -13,7 +13,6 @@ public class DevolucaoControl
 	}
 	public ObservableList<Devolucao> getLista() 
 	{
-		ASD
 		return lista;
 	}
 }
