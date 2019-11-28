@@ -30,13 +30,14 @@ public class DaoDevolucao implements DaoDevolucaoI{
 			{
 				try 
 				{
-					String sql = "INSERT INTO Devolucao " + " (cliente, venda, produto, garantia, razao) " + " VALUES (?,?,?,?,?)";
+					String sql = "INSERT INTO Devolucao " + " (cliente, venda, razao) " + " VALUES (?,?,?)";
 					PreparedStatement statement = conexao.prepareStatement(sql);
 					statement.setString(1, d.getCliente());
 					statement.setString(2, d.getVenda());
-					statement.setInt(3, d.getTipo().getId());
-					statement.setInt(4, d.getGarantia().getId());
-					statement.setString(5, d.getRazao());
+					statement.setString(3, d.getRazao());
+//					statement.setInt(4, d.getTipo().getId());
+//					statement.setInt(5, d.getGarantia().getId());
+
 					statement.executeUpdate();
 					statement.close();
 				} 

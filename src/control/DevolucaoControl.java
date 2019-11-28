@@ -8,7 +8,6 @@ import dao.DaoDevolucao;
 import dao.DaoDevolucaoI;
 import dao.DaoException;
 import entity.Devolucao;
-import entity.Hardware;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
