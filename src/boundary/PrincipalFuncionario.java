@@ -1,6 +1,9 @@
 package boundary;
 
+import entity.Hardware;
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -10,7 +13,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class PrincipalFuncionario extends Application
+public class PrincipalFuncionario extends Application implements EventHandler<ActionEvent>
 {
 	private Button btnProduto = new Button(" Manter Produto ");
 	private Button btnVenda = new Button("   Manter Venda  ");
@@ -31,24 +34,9 @@ public class PrincipalFuncionario extends Application
 		btnProduto.setTooltip(dicaProduto);
 		btnVenda.setTooltip(dicaVenda);
 		btnCliente.setTooltip(dicaCliente);
-		HardwareBoundary hw = new HardwareBoundary();
-		btnProduto.setOnAction(e -> {
-			try {
-				hw.start(new Stage());
-			} catch (Exception e1) {
-				e1.printStackTrace();
-			}
-		});
-		ClienteBoundary cb = new ClienteBoundary();
-		btnCliente.setOnAction(e -> {
-			try {
-				cb.start(new Stage());
-			} catch (Exception e1) {
-				e1.printStackTrace();
-			}
-		});
-		VendaBoundary vb = new VendaBoundary();
-		btnVenda.setOnAction(e -> vb.start(new Stage()));
+		btnProduto.addEventHandler(ActionEvent.ANY, this);
+		btnCliente.addEventHandler(ActionEvent.ANY, this);
+		btnVenda.addEventHandler(ActionEvent.ANY, this);
 		prFuncionario.getChildren().addAll(btnProduto,btnVenda,btnCliente);
 		prFuncionario.setSpacing(20);
 		prFuncionario.setAlignment(Pos.CENTER);
@@ -64,5 +52,23 @@ public class PrincipalFuncionario extends Application
 		stage.setScene(Scn);
 		stage.show();
 		
+	}
+
+	@Override
+	public void handle(ActionEvent event) {
+		if (event.getTarget() == btnCliente) { 
+			ClienteBoundary cb = new ClienteBoundary();
+			cb.start(new Stage());
+		} else if (event.getTarget() == btnProduto) {
+			HardwareBoundary hb = new HardwareBoundary();
+			try {
+				hb.start(new Stage());
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else {
+			VendaBoundary vb = new VendaBoundary();
+			vb.start(new Stage());
+		}
 	}
 }

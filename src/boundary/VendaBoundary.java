@@ -81,7 +81,6 @@ public class VendaBoundary extends Application implements EventHandler<ActionEve
 		table.setMaxSize(600, 200);
 		addTableColumns();
 		grid2.add((new Label("Método de Pagamento")), 0, 0);
-		
 		grid2.add(comboPagamento, 1, 0);
 		grid2.add((new Label("Cliente")), 0, 1);
 		comboCliente.setMinWidth(180);
@@ -105,7 +104,6 @@ public class VendaBoundary extends Application implements EventHandler<ActionEve
 	}
 	
 	public void start(Stage stage) {
-		VendaBoundary vb = new VendaBoundary();
 		stage.getIcons().add(new Image(VendaBoundary.class.getResourceAsStream("icon6.png")));
 		stage.setScene(scn);
 		stage.setTitle("Venda");
